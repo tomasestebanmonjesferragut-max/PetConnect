@@ -13,7 +13,7 @@ function tarjeta(m) {
       ${foto(m, "tarjeta__foto")}
       <div class="tarjeta__info">
         <h3>${m.nombre}</h3>
-        <span class="etiqueta">${m.tipo}</span>
+        <span class="etiqueta">${m.especie}</span>
         <span class="etiqueta">${m.edad}</span>
         <p>${m.caracteristicas}</p>
         <div class="tarjeta__acciones">
@@ -55,7 +55,15 @@ if (listado) {
   const modalContenido = document.getElementById("modalContenido");
   const contadorFav = document.getElementById("contadorFav");
 
-  function rangoEdad(meses) {
+  // NUEVO: Convierte el texto ("2 años", "5 meses") a un número de meses
+  function obtenerMeses(edadString) {
+    const num = parseInt(edadString);
+    if (edadString.toLowerCase().includes("año")) return num * 12;
+    return num;
+  }
+
+  function rangoEdad(edadString) {
+    const meses = obtenerMeses(edadString);
     if (meses < 12) return "cachorro";
     if (meses < 48) return "joven";
     return "adulto";
@@ -66,8 +74,8 @@ if (listado) {
 
     const filtradas = mascotas.filter(m =>
       m.nombre.toLowerCase().includes(texto) &&
-      (filtroEspecie.value === "" || m.especie === filtroEspecie.value) &&
-      (filtroEdad.value === "" || rangoEdad(m.edadMeses) === filtroEdad.value) &&
+      (filtroEspecie.value === "" || m.especie.toLowerCase() === filtroEspecie.value.toLowerCase()) &&
+      (filtroEdad.value === "" || rangoEdad(m.edad) === filtroEdad.value) &&
       (!soloFavoritos || favoritos.includes(m.id))
     );
 
@@ -97,10 +105,10 @@ if (listado) {
       <div class="ficha">
         <h2>${m.nombre}</h2>
         <ul class="ficha__datos">
-          <li><span>Especie</span>${m.tipo}</li>
-          <li><span>Edad</span>${m.edad}</li>
+          <li><span>Especie: </span>${m.especie}</li>
+          <li><span>Edad: </span>${m.edad}</li>
         </ul>
-        <p class="ficha__texto"><span>Características</span>${m.caracteristicas}</p>
+        <p class="ficha__texto"><span>Características: </span>${m.caracteristicas}</p>
         <p class="ficha__nota">Enviar tu interés no aprueba la adopción: primero coordinamos una entrevista.</p>
         <div class="ficha__acciones">
           <a class="btn" href="contacto.html?mascota=${m.id}">Me interesa adoptar</a>
@@ -171,6 +179,11 @@ if (form) {
       mensajes.push("Escribe un mensaje de al menos 10 caracteres.");
       campos.mensaje.classList.add("invalido");
     }
+    // NUEVO: Validación del checkbox de robot
+    if (!campos.robot.checked) {
+      mensajes.push("Por favor, confirma que no eres un robot.");
+      campos.robot.classList.add("invalido");
+    }
 
     errores.innerHTML = mensajes.join("<br>");
     return mensajes.length === 0;
@@ -183,13 +196,18 @@ if (form) {
     if (!validarFormulario()) return;
 
     const nombre = form.elements.nombre.value.trim();
-    const mascota = mascotas.find(m => m.id === Number(form.elements.mascota.value));
-    exito.textContent = `¡Gracias ${nombre}! Recibimos tu interés por ${mascota.nombre}. Te contactaremos para coordinar una entrevista; la adopción no queda aprobada automáticamente.`;
+    
+    // Ocultar formulario al enviar con éxito
+    Array.from(form.children).forEach(hijo => {
+      if (hijo.id !== "exito") hijo.style.display = "none";
+    });
+
+    exito.textContent = `¡Gracias ${nombre}! Tu formulario ha sido enviado. Te contactaremos pronto.`;
     exito.hidden = false;
     form.reset();
   });
 
-  selectMascota.innerHTML += mascotas.map(m => `<option value="${m.id}">${m.nombre} (${m.tipo})</option>`).join("");
+  selectMascota.innerHTML += mascotas.map(m => `<option value="${m.id}">${m.nombre} (${m.especie})</option>`).join("");
   // Si se llega desde la ficha (contacto.html?mascota=3) queda elegida esa mascota
   const elegida = new URLSearchParams(location.search).get("mascota");
   if (elegida) selectMascota.value = elegida;

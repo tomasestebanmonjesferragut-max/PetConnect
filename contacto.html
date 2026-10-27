@@ -1,68 +1,29 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto | PetConnect</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="header">
-    <div class="contenedor header__fila">
-      <a href="index.html" class="logo">🐾 PetConnect</a>
-      <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
-      <nav class="nav" id="nav">
-        <a href="index.html">Inicio</a>
-        <a href="mascotas.html">Mascotas</a>
-        <a href="proceso.html">Proceso de adopción</a>
-        <a href="preguntas.html">Preguntas frecuentes</a>
-        <a href="contacto.html" class="activo" aria-current="page">Contacto</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="contenedor">
-    <section class="contacto">
-      <h1 class="titulo">Contacto</h1>
-      <div class="contacto__grilla">
-        <div>
-          <p>¿Te interesa alguna mascota o tienes dudas? Escríbenos.</p>
-          <ul class="datos">
-            <li>📧 <a href="mailto:adopciones@petconnect.cl">adopciones@petconnect.cl</a></li>
-            <li>📷 Instagram: @petconnect.cl</li>
-            <li>💬 WhatsApp: +56 9 5555 3402</li>
-          </ul>
-        </div>
-
-        <form id="formContacto" class="form" novalidate>
+<form id="formContacto" class="form" novalidate>
           <label>Nombre
-            <input type="text" name="nombre">
+            <input type="text" name="nombre" required>
           </label>
           <label>Correo
-            <input type="email" name="correo">
+            <input type="email" name="correo" required>
           </label>
           <label>Mascota de interés
-            <select name="mascota" id="selectMascota">
+            <select name="mascota" id="selectMascota" required>
               <option value="">Selecciona...</option>
+              <!-- Las opciones se llenarán con JS -->
             </select>
           </label>
           <label>Mensaje
-            <textarea name="mensaje" rows="4"></textarea>
+            <textarea name="mensaje" rows="4" required></textarea>
           </label>
+          
+          <!-- Simulación de "No soy robot" -->
+          <label class="check">
+            <input type="checkbox" name="robot" required>
+            🤖 No soy un robot
+          </label>
+
           <p id="errores" class="errores"></p>
           <button type="submit" class="btn">Enviar</button>
+          
+          <!-- Mensaje de éxito oculto por defecto -->
           <p id="exito" class="exito" hidden></p>
         </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>PetConnect © 2026 · Desafío Web Santo Tomás</p>
-    <p class="creditos">Fotos: <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY, CC BY-SA, CC0 y dominio público)</p>
-  </footer>
-
-  <script src="mascotas.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
