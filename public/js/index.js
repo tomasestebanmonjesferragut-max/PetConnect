@@ -1,4 +1,4 @@
-// Inicio: carrusel de mascotas, familias que adoptaron y ventana de novedades
+// Inicio: carrusel de mascotas, familias que adoptaron y aviso de novedades
 const carrusel = document.getElementById("carrusel");
 const pista = document.getElementById("pista");
 const puntos = document.getElementById("puntos");
@@ -78,8 +78,19 @@ document.getElementById("novedadesLista").innerHTML = mascotas.slice(-2).map(m =
   <li>${foto(m, "novedad__foto")}<span><strong>${escaparHTML(m.nombre)}</strong> llegó y busca familia. ${escaparHTML(m.caracteristicas)}.</span></li>
 `).join("");
 
-if (!sessionStorage.getItem("novedadesVistas")) {
-  novedades.showModal();
+// Al entrar se ve la página principal; las novedades se ofrecen con un aviso pequeño
+const avisoNovedades = document.getElementById("avisoNovedades");
+
+function ocultarAviso() {
+  avisoNovedades.hidden = true;
   sessionStorage.setItem("novedadesVistas", "si");
 }
+
+if (!sessionStorage.getItem("novedadesVistas")) avisoNovedades.hidden = false;
+
+document.getElementById("verNovedades").addEventListener("click", () => {
+  ocultarAviso();
+  novedades.showModal();
+});
+document.getElementById("cerrarAviso").addEventListener("click", ocultarAviso);
 document.getElementById("cerrarNovedades").addEventListener("click", () => novedades.close());

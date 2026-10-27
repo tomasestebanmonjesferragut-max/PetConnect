@@ -433,3 +433,15 @@ img, video, iframe { max-width: 100%; }
 .footer__grilla > *, .footer__marca > div { min-width: 0; }
 .red { overflow-wrap: anywhere; }
 .filtros select, .filtros input { min-width: 0; }
+
+/* Aviso de novedades: no tapa la página al entrar */
+.aviso-novedades { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 20; display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100% - 32px); background: var(--blanco); color: var(--texto); padding: 10px 12px 10px 18px; border-radius: 999px; box-shadow: 0 6px 24px rgba(0,0,0,.2); border: 2px solid var(--acento); font-weight: bold; animation: aparecer .4s ease; }
+.aviso-novedades .btn { padding: 8px 14px; font-size: .9rem; white-space: nowrap; }
+.aviso-novedades__cerrar { background: none; border: none; font-size: 1rem; cursor: pointer; color: #667; padding: 4px 6px; }
+@keyframes aparecer { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@media (max-width: 480px) {
+  .aviso-novedades { border-radius: var(--radio); flex-wrap: wrap; justify-content: center; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aviso-novedades { animation: none; }
+}

@@ -411,6 +411,21 @@ const pruebas = [
     }
   },
   {
+    nombre: "Al entrar al inicio se ve la página principal; las novedades se abren solo si se piden",
+    async fn(ancho) {
+      sessionStorage.removeItem("novedadesVistas");
+      const p = await abrir("index", ancho);
+      const ventanaAlEntrar = p.d.getElementById("novedades").open;
+      const aviso = !p.d.getElementById("avisoNovedades").hidden;
+      p.d.getElementById("verNovedades").click();
+      const abreAlPedir = p.d.getElementById("novedades").open;
+      p.cerrar();
+      comprobar(!ventanaAlEntrar, "La ventana de novedades tapa el inicio al entrar");
+      comprobar(aviso, "No aparece el aviso de novedades");
+      comprobar(abreAlPedir, "\"Ver novedades\" no abre la ventana");
+    }
+  },
+  {
     nombre: "La raíz del repo (GitHub Pages) lleva al inicio",
     async fn(ancho) {
       const p = await abrir("../index.html", ancho, 800);
