@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Administración | PetConnect</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="contenedor header__fila">
+      <a href="index.html" class="logo">🐾 PetConnect</a>
+      <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav class="nav" id="nav">
+        <a href="index.html">Inicio</a>
+        <a href="mascotas.html">Mascotas</a>
+        <a href="proceso.html">Proceso de adopción</a>
+        <a href="preguntas.html">Preguntas frecuentes</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section class="admin">
+      <h1 class="titulo">Administrar mascotas</h1>
+      <p class="admin__aviso">Panel de demostración: los cambios se guardan solo en este navegador (no hay servidor ni base de datos).</p>
+
+      <div class="admin__grilla">
+        <form id="formMascota" class="form" novalidate>
+          <h2 id="tituloForm">Nueva mascota</h2>
+          <label>Nombre
+            <input type="text" name="nombre">
+          </label>
+          <label>Especie
+            <select name="tipo">
+              <option value="Perro">Perro</option>
+              <option value="Perra">Perra</option>
+              <option value="Gato">Gato</option>
+              <option value="Gata">Gata</option>
+            </select>
+          </label>
+          <label>Edad (ej: "2 años" o "5 meses")
+            <input type="text" name="edad">
+          </label>
+          <label>Características
+            <input type="text" name="caracteristicas">
+          </label>
+          <label>Historia (cómo se presenta la mascota)
+            <textarea name="historia" rows="3" placeholder="Hola, soy..."></textarea>
+          </label>
+          <label>Fotos y videos (puedes elegir varios)
+            <input type="file" name="archivos" accept="image/*,video/*" multiple>
+          </label>
+          <label>Link de YouTube (opcional)
+            <input type="url" name="youtube" placeholder="https://www.youtube.com/watch?v=...">
+          </label>
+          <div id="galeriaActual" class="admin__galeria"></div>
+          <p id="erroresAdmin" class="errores"></p>
+          <div class="ficha__acciones">
+            <button type="submit" class="btn">Guardar</button>
+            <button type="button" id="btnCancelar" class="btn btn--borde">Cancelar</button>
+          </div>
+          <p id="exitoAdmin" class="exito" hidden></p>
+        </form>
+
+        <div>
+          <h2>Mascotas publicadas</h2>
+          <ul id="listaAdmin" class="admin__lista"></ul>
+          <button id="btnRestablecer" class="btn btn--borde">Restablecer datos originales</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>PetConnect © 2026 · Desafío Web Santo Tomás</p>
+    <p class="creditos">Fotos: <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY, CC BY-SA, CC0 y dominio público)</p>
+  </footer>
+
+  <script src="../js/datos.js"></script>
+  <script src="../js/comun.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

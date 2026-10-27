@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio | PetConnect</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
   <header class="header">
@@ -30,6 +30,12 @@
   </section>
 
   <main class="contenedor">
+    <section class="intro">
+      <p class="antetitulo">Tú buscas un compañero</p>
+      <h2>Ellos te están esperando 🧡</h2>
+      <p>Cada mascota que ves aquí fue rescatada y hoy está sana, cuidada por voluntarios y lista para un hogar. Ellos no pueden elegir a su familia, pero tú sí puedes elegirlos a ellos. Conoce su historia, revisa el proceso y, si sientes que es para ti, escríbenos.</p>
+    </section>
+
     <section>
       <h2>¿Cómo te ayudamos?</h2>
       <div class="accesos">
@@ -61,14 +67,31 @@
       <div id="destacadas" class="grilla"></div>
       <p class="centrado"><a href="mascotas.html" class="btn">Ver todas</a></p>
     </section>
+
+    <section class="familias">
+      <p class="antetitulo">Finales felices</p>
+      <h2>Familias que ya adoptaron</h2>
+      <p>Ellos dieron el paso y hoy comparten su vida con un compañero que los esperaba.</p>
+      <div id="familias" class="familias__grilla"></div>
+    </section>
   </main>
+
+  <dialog id="novedades" class="modal novedades">
+    <button class="modal__cerrar" id="cerrarNovedades" aria-label="Cerrar">✕</button>
+    <h2>Novedades PetConnect</h2>
+    <p class="novedades__mensaje">Hoy alguien está esperando junto a la puerta a una familia que todavía no conoce. <strong>Tal vez seas tú.</strong></p>
+    <ul id="novedadesLista" class="novedades__lista"></ul>
+    <p class="novedades__aviso">Recuerda: la adopción en PetConnect es <strong>gratuita</strong>. Nunca pedimos dinero por redes sociales.</p>
+    <a href="mascotas.html" class="btn">Conocerlos</a>
+  </dialog>
 
   <footer class="footer">
     <p>PetConnect © 2026 · Desafío Web Santo Tomás</p>
     <p class="creditos">Fotos: <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY, CC BY-SA, CC0 y dominio público)</p>
   </footer>
 
-  <script src="mascotas.js"></script>
-  <script src="app.js"></script>
+  <script src="../js/datos.js"></script>
+  <script src="../js/comun.js"></script>
+  <script src="../js/index.js"></script>
 </body>
 </html>
