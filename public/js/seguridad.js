@@ -52,7 +52,7 @@ function limpiarMascota(m) {
     edad: texto(m.edad),
     caracteristicas: texto(m.caracteristicas),
     historia: texto(m.historia),
-    encuadre: ["arriba", "centro", "abajo"].includes(m.encuadre) ? m.encuadre : "centro",
+    encuadre: ["arriba", "centro", "abajo"].includes(m.encuadre) || /^\d{1,3}% \d{1,3}%$/.test(m.encuadre) ? m.encuadre : "centro",
     galeria: (Array.isArray(m.galeria) ? m.galeria : []).filter(g =>
       g && ["imagen", "video", "youtube"].includes(g.tipo) &&
       typeof g.src === "string" && !/^\s*javascript:/i.test(g.src))

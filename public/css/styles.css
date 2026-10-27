@@ -445,3 +445,10 @@ img, video, iframe { max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   .aviso-novedades { animation: none; }
 }
+
+/* Ficha: la foto se ve completa, con la misma foto difuminada de fondo */
+.galeria__principal .galeria__fondo { object-fit: cover; filter: blur(18px) brightness(.75); transform: scale(1.15); }
+.galeria__principal .galeria__foto { object-fit: contain; z-index: 1; }
+@media (max-width: 859px) {
+  .galeria__principal { height: min(60vh, 380px); }
+}

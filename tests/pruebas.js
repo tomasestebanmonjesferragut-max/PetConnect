@@ -139,11 +139,11 @@ const pruebas = [
     }
   },
   {
-    nombre: "Formulario con nombre, correo, mascota de interés y mensaje",
+    nombre: "Formulario con nombre, correo, teléfono, mascota de interés y mensaje",
     async fn(ancho) {
       const p = await abrir("contacto", ancho);
       const f = p.d.getElementById("formContacto");
-      const campos = ["nombre", "correo", "mascota", "mensaje"].filter(c => !f.elements[c]);
+      const campos = ["nombre", "correo", "telefono", "mascota", "mensaje"].filter(c => !f.elements[c]);
       const opciones = f.elements.mascota.options.length;
       p.cerrar();
       comprobar(campos.length === 0, `Faltan campos: ${campos}`);
@@ -162,6 +162,7 @@ const pruebas = [
       const f = p.d.getElementById("formContacto");
       escribir(f.elements.nombre, "Ana Pérez");
       escribir(f.elements.correo, "ana@mail.cl");
+      escribir(f.elements.telefono, "+56 9 1234 5678");
       escribir(f.elements.mascota, "3");
       escribir(f.elements.mensaje, "Quiero conocer a Simba");
       f.elements.robot.checked = true;
@@ -242,6 +243,10 @@ const pruebas = [
       const errorCorreo = error("correo");
       escribir(f.elements.correo, "ana@mail.cl");
       const corregido = error("correo") === "";
+      escribir(f.elements.telefono, "1234");
+      const errorTelefono = error("telefono");
+      escribir(f.elements.telefono, "+56 9 1234-5678");
+      const telefonoBien = error("telefono") === "";
       escribir(f.elements.mensaje, "Hola");
       const contador = f.querySelector(".campo__contador").textContent;
       escribir(f.elements.nombre, "Ana Pérez");
@@ -255,6 +260,7 @@ const pruebas = [
       p.cerrar();
       comprobar(sinRojoAlEntrar, "Al entrar ya hay errores o el botón está activo");
       comprobar(errorCorreo !== "" && corregido, "El error del correo no aparece o no se va");
+      comprobar(errorTelefono !== "" && telefonoBien, "El error del teléfono no aparece o no se va");
       comprobar(contador.startsWith("4 / 10"), `Contador: ${contador}`);
       comprobar(vista.includes("Milo"), "No aparece la vista de la mascota elegida");
       comprobar(aunDesactivado && activado, "El botón Enviar no responde al check");
@@ -266,10 +272,11 @@ const pruebas = [
       const p = await abrir("contacto", ancho);
       let f = p.d.getElementById("formContacto");
       escribir(f.elements.nombre, "Ana Pérez");
+      escribir(f.elements.telefono, "912345678");
       escribir(f.elements.mensaje, "Quiero adoptar");
       await recargar(p);
       f = p.d.getElementById("formContacto");
-      const recuperado = f.elements.nombre.value === "Ana Pérez" && f.elements.mensaje.value === "Quiero adoptar";
+      const recuperado = f.elements.nombre.value === "Ana Pérez" && f.elements.telefono.value === "912345678" && f.elements.mensaje.value === "Quiero adoptar";
       escribir(f.elements.correo, "ana@mail.cl");
       escribir(f.elements.mascota, "1");
       f.elements.robot.checked = true;

@@ -5,7 +5,10 @@ favoritos = favoritos.filter(Number.isFinite);
 
 // Qué parte de la foto se muestra cuando se recorta (arriba, centro o abajo)
 const ENCUADRES = { arriba: "center 15%", centro: "center", abajo: "center 85%" };
+// También acepta un punto exacto, como "45% 80%" (horizontal y vertical)
+const PUNTO_EXACTO = /^\d{1,3}% \d{1,3}%$/;
 function encuadre(m) {
+  if (PUNTO_EXACTO.test(m.encuadre)) return m.encuadre;
   return ENCUADRES[m.encuadre] || ENCUADRES.centro;
 }
 
@@ -51,7 +54,9 @@ function linkYoutube(url) {
 function medio(item, m) {
   if (item.tipo === "video") return `<video src="${escaparHTML(item.src)}" controls playsinline></video>`;
   if (item.tipo === "youtube") return `<iframe src="${linkYoutube(item.src)}" title="Video de ${escaparHTML(m.nombre)}" allowfullscreen></iframe>`;
-  return `<img src="${escaparHTML(item.src)}" alt="Foto de ${escaparHTML(m.nombre)}" style="object-position: ${encuadre(m)}">`;
+  // En la ficha la foto va completa; detrás, la misma foto difuminada rellena los bordes
+  const src = escaparHTML(item.src);
+  return `<img class="galeria__fondo" src="${src}" alt="" aria-hidden="true"><img class="galeria__foto" src="${src}" alt="Foto de ${escaparHTML(m.nombre)}">`;
 }
 
 // Menú móvil

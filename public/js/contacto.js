@@ -13,6 +13,8 @@ const CLAVE_BORRADOR = "borradorContacto";
 const reglas = {
   nombre: c => c.value.trim().length >= 3 ? "" : "Ingresa tu nombre (mínimo 3 letras).",
   correo: c => /^\S+@\S+\.\S+$/.test(c.value.trim()) ? "" : "Escribe un correo válido, como nombre@correo.cl.",
+  // Acepta espacios, guiones y paréntesis; cuenta solo los dígitos (8 a 12, con + opcional)
+  telefono: c => /^\+?\d{8,12}$/.test(c.value.replace(/[\s\-()]/g, "")) ? "" : "Escribe un teléfono válido, como +56 9 1234 5678.",
   mascota: c => c.value !== "" ? "" : "Selecciona una mascota de interés.",
   mensaje: c => c.value.trim().length >= MIN_MENSAJE ? "" : `Escribe al menos ${MIN_MENSAJE} caracteres.`,
   robot: c => c.checked ? "" : "Debes aceptar el compromiso de cuidado responsable."
@@ -74,6 +76,7 @@ function guardarBorrador() {
   guardarJSON(CLAVE_BORRADOR, {
     nombre: c.nombre.value,
     correo: c.correo.value,
+    telefono: c.telefono.value,
     mascota: c.mascota.value,
     mensaje: c.mensaje.value
   });
@@ -82,7 +85,7 @@ function guardarBorrador() {
 function restaurarBorrador() {
   const borrador = leerJSON(CLAVE_BORRADOR, null);
   if (!borrador || typeof borrador !== "object") return;
-  for (const nombre of ["nombre", "correo", "mensaje"]) {
+  for (const nombre of ["nombre", "correo", "telefono", "mensaje"]) {
     if (typeof borrador[nombre] === "string" && borrador[nombre] !== "") {
       form.elements[nombre].value = borrador[nombre];
       tocados.add(nombre);
@@ -128,7 +131,7 @@ form.addEventListener("submit", e => {
   Array.from(form.children).forEach(hijo => {
     if (hijo !== exito) hijo.hidden = true;
   });
-  exito.textContent = `¡Gracias ${nombre}! Recibimos tu interés por ${mascota.nombre}. Te contactaremos para coordinar una entrevista; la adopción no queda aprobada automáticamente.`;
+  exito.textContent = `¡Gracias ${nombre}! Recibimos tu interés por ${mascota.nombre}. Te contactaremos al correo o al teléfono que dejaste para coordinar una entrevista; la adopción no queda aprobada automáticamente.`;
   exito.hidden = false;
   form.reset();
   borrarJSON(CLAVE_BORRADOR);

@@ -235,6 +235,16 @@ Probar cada página en estos anchos (F12 → modo dispositivo, o redimensionar l
 - [ ] ` ana@mail.cl ` (con espacios) → Sin error.
 - [ ] `ana @mail.cl` (espacio en medio) → Error.
 
+### Teléfono
+- [ ] `1234` → "Escribe un teléfono válido, como +56 9 1234 5678."
+- [ ] `+56 9 1234 5678` → Sin error, borde verde.
+- [ ] `912345678` (sin +56) → Sin error.
+- [ ] `+56 9 1234-5678` (con guion) → Sin error.
+- [ ] `(+56) 9 1234 5678` (con paréntesis) → Sin error.
+- [ ] `abc12345` (con letras) → Error.
+- [ ] `1234567890123` (13 dígitos) → Error.
+- [ ] En el teléfono tocar el campo → Se abre el teclado numérico.
+
 ### Mascota
 - [ ] Elegir una mascota → Aparece al lado una mini tarjeta con su foto, especie, edad y características.
 - [ ] Cambiar de mascota → La mini tarjeta cambia al instante.
@@ -252,7 +262,7 @@ Probar cada página en estos anchos (F12 → modo dispositivo, o redimensionar l
 - [ ] Con algo incompleto, apretar **Enter** dentro de un campo → No se envía.
 
 ### Borrador
-- [ ] Escribir nombre y mensaje, recargar (F5) → Lo escrito sigue ahí.
+- [ ] Escribir nombre, teléfono y mensaje, recargar (F5) → Lo escrito sigue ahí.
 - [ ] Escribir, ir a otra página y volver → Sigue ahí.
 - [ ] El check del compromiso **no** se guarda (hay que marcarlo de nuevo, a propósito).
 
@@ -306,7 +316,7 @@ Probar cada página en estos anchos (F12 → modo dispositivo, o redimensionar l
 - [ ] Navegación funcional entre secciones: Inicio, Mascotas, Proceso de adopción, Preguntas frecuentes, Contacto.
 - [ ] Hay al menos una interacción JavaScript útil (filtros, buscador, favoritos, ficha).
 - [ ] Filtros por especie y edad y buscador por nombre, sin recargar la página.
-- [ ] Formulario con nombre, correo, mascota de interés y mensaje, que no envía datos a un servidor.
+- [ ] Formulario con nombre, correo, teléfono, mascota de interés y mensaje, que no envía datos a un servidor.
 - [ ] El sitio nunca dice que la adopción queda aprobada automáticamente.
 - [ ] Datos de contacto simulados visibles.
 - [ ] Sin backend, base de datos, login ni pagos.
