@@ -3,130 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PetConnect | Adopción responsable</title>
+  <title>Inicio | PetConnect</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="header">
     <div class="contenedor header__fila">
-      <a href="#inicio" class="logo">🐾 PetConnect</a>
+      <a href="index.html" class="logo">🐾 PetConnect</a>
       <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="nav" id="nav">
-        <a href="#inicio">Inicio</a>
-        <a href="#mascotas">Mascotas</a>
-        <a href="#como-adoptar">Proceso de adopción</a>
-        <a href="#preguntas">Preguntas frecuentes</a>
-        <a href="#contacto">Contacto</a>
+        <a href="index.html" class="activo" aria-current="page">Inicio</a>
+        <a href="mascotas.html">Mascotas</a>
+        <a href="proceso.html">Proceso de adopción</a>
+        <a href="preguntas.html">Preguntas frecuentes</a>
+        <a href="contacto.html">Contacto</a>
       </nav>
     </div>
   </header>
 
-  <section id="inicio" class="hero">
+  <section class="hero">
     <div class="contenedor">
       <h1>Encuentra a tu nuevo mejor amigo</h1>
       <p>Somos una agrupación de voluntariado que conecta animales rescatados con familias interesadas en una adopción responsable.</p>
-      <a href="#mascotas" class="btn">Ver mascotas</a>
+      <a href="mascotas.html" class="btn">Ver mascotas</a>
     </div>
   </section>
 
   <main class="contenedor">
-    <section id="mascotas">
-      <h2>Mascotas en adopción</h2>
-
-      <div class="filtros">
-        <input type="search" id="buscar" placeholder="Buscar por nombre..." aria-label="Buscar por nombre">
-        <select id="filtroEspecie" aria-label="Filtrar por especie">
-          <option value="">Todas las especies</option>
-          <option value="perro">Perros</option>
-          <option value="gato">Gatos</option>
-        </select>
-        <select id="filtroEdad" aria-label="Filtrar por edad">
-          <option value="">Todas las edades</option>
-          <option value="cachorro">Cachorros (menos de 1 año)</option>
-          <option value="joven">Jóvenes (1 a 3 años)</option>
-          <option value="adulto">Adultos (4 años o más)</option>
-        </select>
-        <button id="btnFavoritos" class="btn btn--borde">❤ Me interesan (<span id="contadorFav">0</span>)</button>
+    <section>
+      <h2>¿Cómo te ayudamos?</h2>
+      <div class="accesos">
+        <a href="mascotas.html" class="acceso">
+          <span class="acceso__icono">🐶</span>
+          <h3>Conoce las mascotas</h3>
+          <p>Filtra por especie y edad o busca por nombre.</p>
+        </a>
+        <a href="proceso.html" class="acceso">
+          <span class="acceso__icono">📋</span>
+          <h3>Proceso de adopción</h3>
+          <p>Revisa los pasos para adoptar de forma responsable.</p>
+        </a>
+        <a href="preguntas.html" class="acceso">
+          <span class="acceso__icono">❓</span>
+          <h3>Preguntas frecuentes</h3>
+          <p>Resolvemos las dudas más comunes.</p>
+        </a>
+        <a href="contacto.html" class="acceso">
+          <span class="acceso__icono">💬</span>
+          <h3>Contacto</h3>
+          <p>Cuéntanos qué mascota te interesa.</p>
+        </a>
       </div>
-
-      <p id="resultado" class="resultado"></p>
-      <div id="listado" class="grilla"></div>
     </section>
 
-    <section id="como-adoptar" class="pasos">
-      <h2>Proceso de adopción</h2>
-      <ol>
-        <li><strong>Elige</strong> una mascota y revisa su ficha.</li>
-        <li><strong>Escríbenos</strong> con el formulario de contacto o por WhatsApp.</li>
-        <li><strong>Conversamos</strong>: una entrevista para conocer tu hogar y tu rutina.</li>
-        <li><strong>Evaluamos</strong> la solicitud. La adopción nunca es automática.</li>
-        <li><strong>Firma y bienvenida</strong>: compromiso de adopción responsable y seguimiento.</li>
-      </ol>
-    </section>
-
-    <section id="preguntas" class="faq">
-      <h2>Preguntas frecuentes</h2>
-      <details>
-        <summary>¿La adopción tiene costo?</summary>
-        <p>No. Solo pedimos el compromiso de cuidar a la mascota, mantener sus vacunas al día y esterilizarla cuando corresponda.</p>
-      </details>
-      <details>
-        <summary>¿Enviar el formulario significa que ya adopté?</summary>
-        <p>No. El formulario solo nos avisa de tu interés. Después te contactamos para una entrevista y evaluar la adopción.</p>
-      </details>
-      <details>
-        <summary>¿Qué requisitos debo cumplir?</summary>
-        <p>Ser mayor de edad, contar con un espacio adecuado para la mascota y tener el acuerdo de todas las personas del hogar.</p>
-      </details>
-      <details>
-        <summary>¿Puedo conocer a la mascota antes?</summary>
-        <p>Sí. Coordinamos una visita con el voluntario que la tiene a su cuidado.</p>
-      </details>
-      <details>
-        <summary>¿Qué pasa si después no puedo cuidarla?</summary>
-        <p>Debes avisarnos. Nunca la abandones: te ayudamos a buscarle un nuevo hogar.</p>
-      </details>
-    </section>
-
-    <section id="contacto" class="contacto">
-      <h2>Contacto</h2>
-      <div class="contacto__grilla">
-        <div>
-          <p>¿Te interesa alguna mascota o tienes dudas? Escríbenos.</p>
-          <ul class="datos">
-            <li>📧 <a href="mailto:adopciones@petconnect.cl">adopciones@petconnect.cl</a></li>
-            <li>📷 Instagram: @petconnect.cl</li>
-            <li>💬 WhatsApp: +56 9 5555 3402</li>
-          </ul>
-        </div>
-
-        <form id="formContacto" class="form" novalidate>
-          <label>Nombre
-            <input type="text" name="nombre">
-          </label>
-          <label>Correo
-            <input type="email" name="correo">
-          </label>
-          <label>Mascota de interés
-            <select name="mascota" id="selectMascota">
-              <option value="">Selecciona...</option>
-            </select>
-          </label>
-          <label>Mensaje
-            <textarea name="mensaje" rows="4"></textarea>
-          </label>
-          <p id="errores" class="errores"></p>
-          <button type="submit" class="btn">Enviar</button>
-          <p id="exito" class="exito" hidden></p>
-        </form>
-      </div>
+    <section>
+      <h2>Buscan hogar</h2>
+      <div id="destacadas" class="grilla"></div>
+      <p class="centrado"><a href="mascotas.html" class="btn">Ver todas</a></p>
     </section>
   </main>
-
-  <dialog id="modal" class="modal">
-    <button class="modal__cerrar" id="cerrarModal" aria-label="Cerrar">✕</button>
-    <div id="modalContenido"></div>
-  </dialog>
 
   <footer class="footer">
     <p>PetConnect © 2026 · Desafío Web Santo Tomás</p>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mascotas | PetConnect</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="contenedor header__fila">
+      <a href="index.html" class="logo">🐾 PetConnect</a>
+      <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav class="nav" id="nav">
+        <a href="index.html">Inicio</a>
+        <a href="mascotas.html" class="activo" aria-current="page">Mascotas</a>
+        <a href="proceso.html">Proceso de adopción</a>
+        <a href="preguntas.html">Preguntas frecuentes</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section>
+      <h1 class="titulo">Mascotas en adopción</h1>
+
+      <div class="filtros">
+        <input type="search" id="buscar" placeholder="Buscar por nombre..." aria-label="Buscar por nombre">
+        <select id="filtroEspecie" aria-label="Filtrar por especie">
+          <option value="">Todas las especies</option>
+          <option value="perro">Perros</option>
+          <option value="gato">Gatos</option>
+        </select>
+        <select id="filtroEdad" aria-label="Filtrar por edad">
+          <option value="">Todas las edades</option>
+          <option value="cachorro">Cachorros (menos de 1 año)</option>
+          <option value="joven">Jóvenes (1 a 3 años)</option>
+          <option value="adulto">Adultos (4 años o más)</option>
+        </select>
+        <button id="btnFavoritos" class="btn btn--borde">❤ Me interesan (<span id="contadorFav">0</span>)</button>
+      </div>
+
+      <p id="resultado" class="resultado"></p>
+      <div id="listado" class="grilla"></div>
+    </section>
+  </main>
+
+  <dialog id="modal" class="modal">
+    <button class="modal__cerrar" id="cerrarModal" aria-label="Cerrar">✕</button>
+    <div id="modalContenido"></div>
+  </dialog>
+
+  <footer class="footer">
+    <p>PetConnect © 2026 · Desafío Web Santo Tomás</p>
+    <p class="creditos">Fotos: <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY, CC BY-SA, CC0 y dominio público)</p>
+  </footer>
+
+  <script src="mascotas.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
