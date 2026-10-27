@@ -66,6 +66,5 @@ const fotosAdoptados = [
   { src: "../img/fotos/adoptado4.webp" },
   { src: "../img/fotos/adoptado5.jpg" },
   { src: "../img/fotos/adoptado6.jpg" },
-  { src: "../img/fotos/adoptado7.jpg" },
-  { src: "../img/fotos/adoptado8.jpg" }
+  { src: "../img/fotos/adoptado7.jpg" }
 ];
