@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetConnect | Adopción responsable</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="contenedor header__fila">
+      <a href="#" class="logo">🐾 PetConnect</a>
+      <nav class="nav">
+        <a href="#mascotas">Mascotas</a>
+        <a href="#como-adoptar">Cómo adoptar</a>
+        <button id="btnFavoritos" class="btn btn--borde">❤ Favoritos (<span id="contadorFav">0</span>)</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="contenedor">
+      <h1>Encuentra a tu nuevo mejor amigo</h1>
+      <p>Conectamos mascotas que buscan hogar con familias responsables.</p>
+      <a href="#mascotas" class="btn">Ver mascotas</a>
+    </div>
+  </section>
+
+  <main class="contenedor">
+    <section id="mascotas">
+      <h2>Mascotas en adopción</h2>
+
+      <div class="filtros">
+        <input type="search" id="buscar" placeholder="Buscar por nombre...">
+        <select id="filtroEspecie">
+          <option value="">Todas las especies</option>
+          <option value="perro">Perros</option>
+          <option value="gato">Gatos</option>
+          <option value="otro">Otros</option>
+        </select>
+        <select id="filtroTamano">
+          <option value="">Todos los tamaños</option>
+          <option value="pequeño">Pequeño</option>
+          <option value="mediano">Mediano</option>
+          <option value="grande">Grande</option>
+        </select>
+      </div>
+
+      <p id="resultado" class="resultado"></p>
+      <div id="listado" class="grilla"></div>
+    </section>
+
+    <section id="como-adoptar" class="pasos">
+      <h2>Cómo adoptar</h2>
+      <ol>
+        <li><strong>Elige</strong> una mascota y revisa su ficha.</li>
+        <li><strong>Envía</strong> la solicitud de adopción.</li>
+        <li><strong>Te contactamos</strong> para una entrevista y visita.</li>
+        <li><strong>¡Llévala a casa!</strong> con el compromiso de cuidarla.</li>
+      </ol>
+    </section>
+  </main>
+
+  <dialog id="modal" class="modal">
+    <button class="modal__cerrar" id="cerrarModal" aria-label="Cerrar">✕</button>
+    <div id="modalContenido"></div>
+
+    <form id="formAdopcion" class="form" novalidate>
+      <h3>Solicitud de adopción</h3>
+      <label>Nombre completo
+        <input type="text" name="nombre" required>
+      </label>
+      <label>Correo
+        <input type="email" name="correo" required>
+      </label>
+      <label>Teléfono
+        <input type="tel" name="telefono" placeholder="+56 9 1234 5678" required>
+      </label>
+      <label>Tipo de vivienda
+        <select name="vivienda" required>
+          <option value="">Selecciona...</option>
+          <option>Casa con patio</option>
+          <option>Casa sin patio</option>
+          <option>Departamento</option>
+        </select>
+      </label>
+      <label class="check">
+        <input type="checkbox" name="compromiso" required>
+        Me comprometo a cuidarla, vacunarla y esterilizarla.
+      </label>
+      <p id="errores" class="errores"></p>
+      <button type="submit" class="btn">Enviar solicitud</button>
+    </form>
+  </dialog>
+
+  <footer class="footer">
+    <p>PetConnect © 2026 · Desafío Web Santo Tomás</p>
+    <p class="creditos">Fotos: <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY, CC BY-SA, CC0 y dominio público)</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

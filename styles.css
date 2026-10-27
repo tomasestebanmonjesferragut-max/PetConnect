@@ -1,0 +1,115 @@
+:root {
+  --primario: #2a9d8f;
+  --primario-oscuro: #1f7a6f;
+  --acento: #f4a261;
+  --texto: #264653;
+  --fondo: #f7f9f9;
+  --blanco: #fff;
+  --radio: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, Arial, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+  line-height: 1.5;
+}
+
+.contenedor { width: min(1100px, 100% - 32px); margin: 0 auto; }
+
+h2 { margin: 40px 0 16px; }
+
+.btn {
+  display: inline-block;
+  background: var(--primario);
+  color: var(--blanco);
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.btn:hover { background: var(--primario-oscuro); }
+.btn--borde { background: transparent; color: var(--primario); border: 2px solid var(--primario); }
+.btn--borde:hover { color: var(--blanco); }
+
+/* Header */
+.header { background: var(--blanco); box-shadow: 0 2px 6px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 10; }
+.header__fila { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; flex-wrap: wrap; gap: 8px; }
+.logo { font-size: 1.4rem; font-weight: bold; color: var(--primario); text-decoration: none; }
+.nav { display: flex; align-items: center; gap: 16px; }
+.nav a { color: var(--texto); text-decoration: none; }
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--primario), var(--acento));
+  color: var(--blanco);
+  text-align: center;
+  padding: 70px 0;
+}
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); }
+.hero p { margin: 10px 0 20px; }
+.hero .btn { background: var(--blanco); color: var(--primario); }
+
+/* Filtros */
+.filtros { display: flex; gap: 10px; flex-wrap: wrap; }
+.filtros input, .filtros select {
+  padding: 10px;
+  border: 1px solid #ccd;
+  border-radius: var(--radio);
+  font-size: 1rem;
+  flex: 1 1 180px;
+}
+.resultado { margin: 12px 0; color: #667; }
+
+/* Tarjetas */
+.grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }
+.tarjeta {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  transition: transform .2s;
+  position: relative;
+}
+.tarjeta:hover { transform: translateY(-4px); }
+.tarjeta__foto { font-size: 4.5rem; text-align: center; padding: 20px 0; }
+.tarjeta__info { padding: 14px; }
+.tarjeta__info p { font-size: .9rem; color: #556; }
+.tarjeta__acciones { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+.fav { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+.etiqueta { display: inline-block; background: #e9f5f3; color: var(--primario-oscuro); padding: 2px 8px; border-radius: 20px; font-size: .8rem; margin-right: 4px; }
+
+/* Pasos */
+.pasos ol { padding-left: 20px; display: grid; gap: 8px; }
+
+/* Modal */
+.modal {
+  border: none;
+  border-radius: var(--radio);
+  padding: 24px;
+  width: min(480px, 100% - 32px);
+  margin: auto;
+}
+.modal::backdrop { background: rgba(0,0,0,.5); }
+.modal__cerrar { position: absolute; top: 10px; right: 12px; background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+.modal__foto { font-size: 4rem; text-align: center; }
+
+.form { display: grid; gap: 10px; margin-top: 16px; border-top: 1px solid #eee; padding-top: 16px; }
+.form label { display: grid; gap: 4px; font-size: .9rem; }
+.form input, .form select { padding: 8px; border: 1px solid #ccd; border-radius: 8px; font-size: 1rem; }
+.form .check { display: flex; gap: 8px; align-items: flex-start; }
+.form .invalido { border-color: #e63946; }
+.errores { color: #e63946; font-size: .9rem; }
+.exito { color: var(--primario-oscuro); font-weight: bold; text-align: center; }
+
+.footer { text-align: center; padding: 30px 0; margin-top: 50px; background: var(--texto); color: var(--blanco); }
+
+.tarjeta__foto, .modal__foto { position: relative; height: 180px; display: grid; place-items: center; padding: 0; background: #e9f5f3; overflow: hidden; }
+.modal__foto { border-radius: var(--radio); margin-bottom: 12px; }
+.tarjeta__foto img, .modal__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.creditos { font-size: .8rem; opacity: .8; margin-top: 6px; }
+.creditos a { color: inherit; }
