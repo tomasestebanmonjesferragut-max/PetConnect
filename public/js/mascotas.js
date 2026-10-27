@@ -52,7 +52,7 @@ function abrirFicha(id) {
   const miniaturas = m.galeria.length > 1
     ? `<div class="galeria__miniaturas">${m.galeria.map((g, i) => `
         <button class="miniatura${i === 0 ? " activa" : ""}" data-medio="${i}" aria-label="Ver archivo ${i + 1}">
-          ${g.tipo === "imagen" ? `<img src="${g.src}" alt="" style="object-position: ${encuadre(m)}">` : "▶"}
+          ${g.tipo === "imagen" ? `<img src="${escaparHTML(g.src)}" alt="" style="object-position: ${encuadre(m)}">` : "▶"}
         </button>`).join("")}</div>`
     : "";
 
@@ -63,13 +63,13 @@ function abrirFicha(id) {
     </div>
     <div class="ficha">
       <p class="ficha__antetitulo">Busca un hogar</p>
-      <h2>${m.nombre}</h2>
-      <p class="ficha__historia">${m.historia || ""}</p>
+      <h2>${escaparHTML(m.nombre)}</h2>
+      <p class="ficha__historia">${escaparHTML(m.historia || "")}</p>
       <ul class="ficha__datos">
-        <li><span>Especie</span>${m.tipo}</li>
-        <li><span>Edad</span>${m.edad}</li>
+        <li><span>Especie</span>${escaparHTML(m.tipo)}</li>
+        <li><span>Edad</span>${escaparHTML(m.edad)}</li>
       </ul>
-      <p class="ficha__texto"><span>Características</span>${m.caracteristicas}</p>
+      <p class="ficha__texto"><span>Características</span>${escaparHTML(m.caracteristicas)}</p>
       <p class="ficha__nota">Enviar tu interés no aprueba la adopción: primero coordinamos una entrevista.</p>
       <div class="ficha__acciones">
         <a class="btn" href="contacto.html?mascota=${m.id}">Me interesa adoptar</a>

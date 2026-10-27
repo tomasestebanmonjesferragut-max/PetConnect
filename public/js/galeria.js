@@ -17,8 +17,8 @@ let visibles = todasLasFotos;
 let fotoActual = 0;
 
 function textoFoto(f) {
-  if (f.estado === "adopcion") return `${f.nombre} · busca hogar`;
-  return f.nombre ? `${f.nombre} · ya tiene familia` : "Ya tiene familia";
+  if (f.estado === "adopcion") return `${escaparHTML(f.nombre)} · busca hogar`;
+  return f.nombre ? `${escaparHTML(f.nombre)} · ya tiene familia` : "Ya tiene familia";
 }
 
 function mostrarFotos(filtro) {
@@ -27,10 +27,10 @@ function mostrarFotos(filtro) {
   contenedorFotos.innerHTML = visibles.map((f, i) => `
     <figure class="foto-galeria">
       <button data-foto="${i}" aria-label="Ampliar foto: ${textoFoto(f)}">
-        <img src="${f.src}" alt="${textoFoto(f)}">
+        <img src="${escaparHTML(f.src)}" alt="${textoFoto(f)}">
       </button>
       <span class="sello sello--${f.estado}">${f.estado === "adopcion" ? "En adopción" : "Adoptado"}</span>
-      <figcaption>${f.nombre || "Final feliz"}</figcaption>
+      <figcaption>${escaparHTML(f.nombre) || "Final feliz"}</figcaption>
     </figure>
   `).join("");
 }

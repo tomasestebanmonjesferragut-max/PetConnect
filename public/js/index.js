@@ -13,12 +13,12 @@ pista.innerHTML = mascotas.map((m, i) => `
   <article class="diapositiva" aria-roledescription="diapositiva" aria-label="${i + 1} de ${mascotas.length}">
     <div class="diapositiva__texto">
       <p class="antetitulo">Busca un hogar</p>
-      <h3>${m.nombre}</h3>
-      <p class="diapositiva__historia">${m.historia || m.caracteristicas}</p>
+      <h3>${escaparHTML(m.nombre)}</h3>
+      <p class="diapositiva__historia">${escaparHTML(m.historia || m.caracteristicas)}</p>
       <p>
-        <span class="etiqueta">${m.tipo}</span>
-        <span class="etiqueta">${m.edad}</span>
-        <span class="etiqueta">${m.caracteristicas}</span>
+        <span class="etiqueta">${escaparHTML(m.tipo)}</span>
+        <span class="etiqueta">${escaparHTML(m.edad)}</span>
+        <span class="etiqueta">${escaparHTML(m.caracteristicas)}</span>
       </p>
       <div class="diapositiva__acciones">
         <a class="btn" href="mascotas.html?ver=${m.id}">Conóceme</a>
@@ -30,7 +30,7 @@ pista.innerHTML = mascotas.map((m, i) => `
 `).join("");
 
 puntos.innerHTML = mascotas.map((m, i) =>
-  `<button class="punto-carrusel" data-ir="${i}" aria-label="Ver a ${m.nombre}"></button>`
+  `<button class="punto-carrusel" data-ir="${i}" aria-label="Ver a ${escaparHTML(m.nombre)}"></button>`
 ).join("");
 
 function irA(i) {
@@ -68,14 +68,14 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) iniciarAutoplay();
 listaFamilias.innerHTML = familias.map(f => `
   <article class="familia">
     <span class="familia__icono">${f.especie === "gato" ? "🐱" : "🐶"}</span>
-    <blockquote>“${f.texto}”</blockquote>
-    <p class="familia__nombre">${f.familia} <span>adoptó a ${f.mascota}</span></p>
+    <blockquote>“${escaparHTML(f.texto)}”</blockquote>
+    <p class="familia__nombre">${escaparHTML(f.familia)} <span>adoptó a ${escaparHTML(f.mascota)}</span></p>
   </article>
 `).join("");
 
 // ---------- Novedades (una vez por visita) ----------
 document.getElementById("novedadesLista").innerHTML = mascotas.slice(-2).map(m => `
-  <li>${foto(m, "novedad__foto")}<span><strong>${m.nombre}</strong> llegó y busca familia. ${m.caracteristicas}.</span></li>
+  <li>${foto(m, "novedad__foto")}<span><strong>${escaparHTML(m.nombre)}</strong> llegó y busca familia. ${escaparHTML(m.caracteristicas)}.</span></li>
 `).join("");
 
 if (!sessionStorage.getItem("novedadesVistas")) {

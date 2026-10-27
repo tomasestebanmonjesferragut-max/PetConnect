@@ -41,7 +41,9 @@ const mascotasBase = [
 ];
 
 // Si el administrador hizo cambios en este navegador se usan esos datos
-const mascotas = JSON.parse(localStorage.getItem("mascotasAdmin")) || mascotasBase;
+const guardadas = leerJSON("mascotasAdmin", null);
+const limpias = Array.isArray(guardadas) ? guardadas.map(limpiarMascota).filter(Boolean) : [];
+const mascotas = limpias.length ? limpias : mascotasBase;
 
 // Familias que ya adoptaron (testimonios del caso, sin fotos de personas)
 const familias = [

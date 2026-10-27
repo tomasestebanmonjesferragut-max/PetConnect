@@ -27,7 +27,7 @@ function validarFormulario() {
     campos.mensaje.classList.add("invalido");
   }
   if (!campos.robot.checked) {
-    mensajes.push("Por favor, confirma que no eres un robot.");
+    mensajes.push("Debes aceptar el compromiso de cuidado responsable.");
   }
 
   errores.innerHTML = mensajes.join("<br>");
@@ -52,7 +52,7 @@ form.addEventListener("submit", e => {
 });
 
 // Opciones del select con las mascotas
-selectMascota.innerHTML += mascotas.map(m => `<option value="${m.id}">${m.nombre} (${m.tipo})</option>`).join("");
+selectMascota.innerHTML += mascotas.map(m => `<option value="${m.id}">${escaparHTML(m.nombre)} (${escaparHTML(m.tipo)})</option>`).join("");
 
 // Si se llega desde la ficha (contacto.html?mascota=3) queda elegida esa mascota
 const elegida = new URLSearchParams(location.search).get("mascota");

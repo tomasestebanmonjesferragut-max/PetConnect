@@ -26,7 +26,7 @@ function mostrarLista() {
   listaAdmin.innerHTML = mascotas.map(m => `
     <li>
       ${foto(m, "admin__miniatura")}
-      <span><strong>${m.nombre}</strong> · ${m.tipo} · ${m.edad} · ${m.galeria.length} archivo(s)</span>
+      <span><strong>${escaparHTML(m.nombre)}</strong> · ${escaparHTML(m.tipo)} · ${escaparHTML(m.edad)} · ${m.galeria.length} archivo(s)</span>
       <button class="btn btn--borde" data-editar="${m.id}">Editar</button>
       <button class="btn btn--peligro" data-borrar="${m.id}">Quitar</button>
     </li>
@@ -36,7 +36,7 @@ function mostrarLista() {
 function mostrarGaleria() {
   galeriaActual.innerHTML = galeria.map((g, i) => `
     <div class="admin__medio">
-      ${g.tipo === "imagen" ? `<img src="${g.src}" alt="">` : `<span>▶ ${g.tipo === "youtube" ? "YouTube" : "Video"}</span>`}
+      ${g.tipo === "imagen" ? `<img src="${escaparHTML(g.src)}" alt="">` : `<span>▶ ${g.tipo === "youtube" ? "YouTube" : "Video"}</span>`}
       <button type="button" data-quitar="${i}" aria-label="Quitar archivo">✕</button>
     </div>
   `).join("");
@@ -49,7 +49,7 @@ function actualizarVista() {
   const guardada = galeria.find(g => g.tipo === "imagen");
   const src = guardada ? guardada.src : nueva ? URL.createObjectURL(nueva) : "";
   const posicion = ENCUADRES[formMascota.elements.encuadre.value];
-  vistaPrevia.innerHTML = src ? `🐾<img src="${src}" alt="" style="object-position: ${posicion}">` : "🐾";
+  vistaPrevia.innerHTML = src ? `🐾<img src="${escaparHTML(src)}" alt="" style="object-position: ${posicion}">` : "🐾";
 }
 
 function limpiarFormulario() {
