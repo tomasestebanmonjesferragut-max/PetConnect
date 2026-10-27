@@ -1,0 +1,8 @@
+[
+  { "nombre": "Luna", "especie": "Perro", "edad": "2 años", "caracteristicas": "Sociable y cariñosa", "imagen": "img/luna.jpg" },
+  { "nombre": "Milo", "especie": "Gato", "edad": "1 año", "caracteristicas": "Adaptado a vida de interior", "imagen": "img/milo.jpg" },
+  { "nombre": "Simba", "especie": "Perro", "edad": "4 años", "caracteristicas": "Tranquilo y obediente", "imagen": "img/simba.jpg" },
+  { "nombre": "Nina", "especie": "Gato", "edad": "3 años", "caracteristicas": "Esterilizada y sociable", "imagen": "img/nina.jpg" },
+  { "nombre": "Rocky", "especie": "Perro", "edad": "8 meses", "caracteristicas": "Activo y juguetón", "imagen": "img/rocky.jpg" },
+  { "nombre": "Canela", "especie": "Gato", "edad": "5 meses", "caracteristicas": "Juguetona y curiosa", "imagen": "img/canela.jpg" }
+]   

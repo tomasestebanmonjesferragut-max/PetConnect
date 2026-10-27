@@ -1,11 +1,7 @@
-const mascotas = [
-  { id: 1, nombre: "Luna", especie: "perro", tamano: "mediano", edad: "2 años", foto: "🐕", imagen: "img/luna.jpg", descripcion: "Juguetona y cariñosa, se lleva bien con niños.", vacunada: true },
-  { id: 2, nombre: "Michi", especie: "gato", tamano: "pequeño", edad: "1 año", foto: "🐈", imagen: "img/michi.jpg", descripcion: "Tranquilo, le encanta dormir al sol.", vacunada: true },
-  { id: 3, nombre: "Rocky", especie: "perro", tamano: "grande", edad: "4 años", foto: "🐕‍🦺", imagen: "img/rocky.jpg", descripcion: "Leal y protector, ideal para casa con patio.", vacunada: false },
-  { id: 4, nombre: "Nube", especie: "gato", tamano: "pequeño", edad: "6 meses", foto: "🐱", imagen: "img/nube.jpg", descripcion: "Curiosa y muy activa.", vacunada: false },
-  { id: 5, nombre: "Coco", especie: "otro", tamano: "pequeño", edad: "1 año", foto: "🐇", imagen: "img/coco.jpg", descripcion: "Conejo dócil, acostumbrado a ser tomado en brazos.", vacunada: true },
-  { id: 6, nombre: "Toby", especie: "perro", tamano: "pequeño", edad: "8 años", foto: "🐩", imagen: "img/toby.jpg", descripcion: "Abuelito tranquilo que busca un hogar para descansar.", vacunada: true }
-];
+let mascotas = []; // Se inicializa vacío, se llenará con el JSON
+let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+let soloFavoritos = false;
+let mascotaActual = null;
 
 const listado = document.getElementById("listado");
 const buscar = document.getElementById("buscar");
@@ -16,10 +12,6 @@ const modal = document.getElementById("modal");
 const modalContenido = document.getElementById("modalContenido");
 const form = document.getElementById("formAdopcion");
 const errores = document.getElementById("errores");
-
-let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-let soloFavoritos = false;
-let mascotaActual = null;
 
 // Si la imagen no existe se queda el emoji
 function foto(m, clase) {
@@ -143,5 +135,12 @@ form.addEventListener("submit", e => {
   modalContenido.innerHTML += `<p class="exito">¡Gracias ${nombre}! Recibimos tu solicitud para adoptar a ${mascotaActual.nombre}. Te contactaremos pronto.</p>`;
 });
 
-document.getElementById("contadorFav").textContent = favoritos.length;
-mostrarMascotas();
+// Carga del JSON y renderizado inicial
+fetch('mascotas.json')
+  .then(respuesta => respuesta.json())
+  .then(datos => {
+    mascotas = datos; // Asigna los datos del JSON a la variable
+    document.getElementById("contadorFav").textContent = favoritos.length;
+    mostrarMascotas(); // Muestra las mascotas una vez cargadas
+  })
+  .catch(error => console.error("Error al cargar las mascotas:", error));
