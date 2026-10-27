@@ -52,13 +52,13 @@ function abrirFicha(id) {
   const miniaturas = m.galeria.length > 1
     ? `<div class="galeria__miniaturas">${m.galeria.map((g, i) => `
         <button class="miniatura${i === 0 ? " activa" : ""}" data-medio="${i}" aria-label="Ver archivo ${i + 1}">
-          ${g.tipo === "imagen" ? `<img src="${g.src}" alt="">` : "▶"}
+          ${g.tipo === "imagen" ? `<img src="${g.src}" alt="" style="object-position: ${encuadre(m)}">` : "▶"}
         </button>`).join("")}</div>`
     : "";
 
   modalContenido.innerHTML = `
     <div class="galeria">
-      <div class="galeria__principal" id="medioPrincipal">${m.galeria.length ? medio(m.galeria[0], m.nombre) : "🐾"}</div>
+      <div class="galeria__principal" id="medioPrincipal">${m.galeria.length ? medio(m.galeria[0], m) : "🐾"}</div>
       ${miniaturas}
     </div>
     <div class="ficha">
@@ -83,7 +83,7 @@ function abrirFicha(id) {
 
 // Cambia la foto o video grande al tocar una miniatura
 function verMedio(i) {
-  document.getElementById("medioPrincipal").innerHTML = medio(mascotaAbierta.galeria[i], mascotaAbierta.nombre);
+  document.getElementById("medioPrincipal").innerHTML = medio(mascotaAbierta.galeria[i], mascotaAbierta);
   modalContenido.querySelectorAll(".miniatura").forEach((b, j) => b.classList.toggle("activa", j === i));
 }
 

@@ -6,15 +6,17 @@
   <meta name="robots" content="noindex">
   <title>Administración | PetConnect</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../img/logo.ico" sizes="any">
 </head>
 <body>
   <header class="header">
     <div class="contenedor header__fila">
-      <a href="index.html" class="logo">🐾 PetConnect</a>
+      <a href="index.html" class="logo"><img src="../img/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
       <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="nav" id="nav">
         <a href="index.html">Inicio</a>
         <a href="mascotas.html">Mascotas</a>
+        <a href="galeria.html">Galería</a>
         <a href="proceso.html">Proceso de adopción</a>
         <a href="preguntas.html">Preguntas frecuentes</a>
         <a href="contacto.html">Contacto</a>
@@ -56,6 +58,17 @@
           <label>Link de YouTube (opcional)
             <input type="url" name="youtube" placeholder="https://www.youtube.com/watch?v=...">
           </label>
+          <label>Encuadre de la foto (qué parte se ve en las tarjetas)
+            <select name="encuadre">
+              <option value="arriba">Arriba (cuando la cara está arriba)</option>
+              <option value="centro" selected>Centro</option>
+              <option value="abajo">Abajo</option>
+            </select>
+          </label>
+          <div class="admin__vista">
+            <span>Vista previa de la tarjeta</span>
+            <div id="vistaPrevia" class="tarjeta__foto">🐾</div>
+          </div>
           <div id="galeriaActual" class="admin__galeria"></div>
           <p id="erroresAdmin" class="errores"></p>
           <div class="ficha__acciones">

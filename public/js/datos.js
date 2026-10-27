@@ -6,13 +6,13 @@ const mascotasBase = [
     id: 1, nombre: "Luna", especie: "perro", tipo: "Perra", edad: "2 años",
     caracteristicas: "Sociable y cariñosa",
     historia: "Hola, soy Luna. Me encanta estar cerca de las personas, recibir cariño y saludar a todos los que conozco. Busco una familia que quiera compartir paseos, juegos y muchos abrazos.",
-    galeria: [{ tipo: "imagen", src: "../img/luna.jpg" }]
+    galeria: [{ tipo: "imagen", src: "../img/luna.webp" }]
   },
   {
     id: 2, nombre: "Milo", especie: "gato", tipo: "Gato", edad: "1 año",
     caracteristicas: "Adaptado a vida de interior",
     historia: "Hola, soy Milo. Soy feliz dentro de casa: una ventana con sol y una manta me bastan. Si vives en departamento, puedo ser tu compañero ideal.",
-    galeria: [{ tipo: "imagen", src: "../img/milo.jpg" }]
+    galeria: [{ tipo: "imagen", src: "../img/milo.jpeg" }]
   },
   {
     id: 3, nombre: "Simba", especie: "perro", tipo: "Perro", edad: "4 años",
@@ -21,13 +21,13 @@ const mascotasBase = [
     galeria: [{ tipo: "imagen", src: "../img/simba.jpg" }]
   },
   {
-    id: 4, nombre: "Nina", especie: "gato", tipo: "Gata", edad: "3 años",
+    id: 4, nombre: "Nina", especie: "gato", tipo: "Gata", edad: "3 años", encuadre: "arriba",
     caracteristicas: "Esterilizada y sociable",
     historia: "Hola, soy Nina. Ya estoy esterilizada y me llevo bien con todos. Me gusta acompañarte en silencio y ronronear cuando me haces cariño.",
     galeria: [{ tipo: "imagen", src: "../img/nina.jpg" }]
   },
   {
-    id: 5, nombre: "Rocky", especie: "perro", tipo: "Perro", edad: "8 meses",
+    id: 5, nombre: "Rocky", especie: "perro", tipo: "Perro", edad: "8 meses", encuadre: "arriba",
     caracteristicas: "Activo y juguetón",
     historia: "Hola, soy Rocky. Tengo energía para regalar: corro, juego y pido la pelota una y otra vez. Busco una familia activa que me enseñe y me acompañe a crecer.",
     galeria: [{ tipo: "imagen", src: "../img/rocky.jpg" }]
@@ -49,4 +49,17 @@ const familias = [
   { familia: "Camila y Andrés", mascota: "Mora", especie: "gato", texto: "Pensamos que adoptar sería difícil, pero el equipo nos acompañó en cada paso." },
   { familia: "Familia Muñoz", mascota: "Bruno", especie: "perro", texto: "Bruno nos cambió la rutina: ahora salimos a caminar todos los días." },
   { familia: "Valentina", mascota: "Pelusa", especie: "gato", texto: "Vivo sola y Pelusa me recibe cada tarde en la puerta. No me imagino la casa sin ella." }
+];
+
+// Fotos de mascotas que ya encontraron familia (galería)
+const fotosAdoptados = [
+  { src: "../img/galeria/toby.jpg", nombre: "Toby" },
+  { src: "../img/galeria/michi.jpg", nombre: "Michi" },
+  { src: "../img/galeria/nube.jpg", nombre: "Nube" },
+  { src: "../img/galeria/coco.jpg", nombre: "Coco" },
+  { src: "../img/galeria/adoptado1.jpeg" },
+  { src: "../img/galeria/adoptado2.jpeg" },
+  { src: "../img/galeria/adoptado3.jpeg" },
+  { src: "../img/galeria/adoptado4.jpeg" },
+  { src: "../img/galeria/adoptado5.jpeg" }
 ];

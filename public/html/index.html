@@ -5,15 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio | PetConnect</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../img/logo.ico" sizes="any">
 </head>
-<body>
+<body class="inicio">
   <header class="header">
     <div class="contenedor header__fila">
-      <a href="index.html" class="logo">🐾 PetConnect</a>
+      <a href="index.html" class="logo"><img src="../img/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
       <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="nav" id="nav">
         <a href="index.html" class="activo" aria-current="page">Inicio</a>
         <a href="mascotas.html">Mascotas</a>
+        <a href="galeria.html">Galería</a>
         <a href="proceso.html">Proceso de adopción</a>
         <a href="preguntas.html">Preguntas frecuentes</a>
         <a href="contacto.html">Contacto</a>
@@ -21,11 +23,13 @@
     </div>
   </header>
 
-  <section class="hero">
+  <section class="hero hero--foto">
     <div class="contenedor">
-      <h1>Encuentra a tu nuevo mejor amigo</h1>
-      <p>Somos una agrupación de voluntariado que conecta animales rescatados con familias interesadas en una adopción responsable.</p>
-      <a href="mascotas.html" class="btn">Ver mascotas</a>
+      <div class="hero__contenido">
+        <h1>Encuentra a tu nuevo mejor amigo</h1>
+        <p>Somos una agrupación de voluntariado que conecta animales rescatados con familias interesadas en una adopción responsable.</p>
+        <a href="mascotas.html" class="btn">Ver mascotas</a>
+      </div>
     </div>
   </section>
 
@@ -64,7 +68,12 @@
 
     <section>
       <h2>Buscan hogar</h2>
-      <div id="destacadas" class="grilla"></div>
+      <div class="carrusel" id="carrusel" aria-roledescription="carrusel" aria-label="Mascotas que buscan hogar">
+        <div class="carrusel__pista" id="pista"></div>
+        <button class="carrusel__flecha carrusel__flecha--anterior" id="anterior" aria-label="Mascota anterior">‹</button>
+        <button class="carrusel__flecha carrusel__flecha--siguiente" id="siguiente" aria-label="Mascota siguiente">›</button>
+      </div>
+      <div class="carrusel__puntos" id="puntos"></div>
       <p class="centrado"><a href="mascotas.html" class="btn">Ver todas</a></p>
     </section>
 

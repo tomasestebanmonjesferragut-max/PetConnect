@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="PetConnect: un perro y una gata sentados con teléfonos buscando familia">
+  <style>
+    .punto { animation: escribir 1.4s infinite ease-in-out; }
+    .p2 { animation-delay: .2s; }
+    .p3 { animation-delay: .4s; }
+    @keyframes escribir { 0%, 60%, 100% { opacity: .35; } 30% { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .punto { animation: none; } }
+    .borde { stroke: #2f3e46; stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+  </style>
+
+  <!-- Fondo y sombra -->
+  <circle cx="120" cy="142" r="90" fill="#e9f5f3"/>
+  <ellipse cx="120" cy="228" rx="80" ry="7" fill="#264653" opacity=".12"/>
+
+  <!-- Burbujas de mensaje -->
+  <path class="borde" d="M80 6 h30 a14 14 0 0 1 0 28 h-20 l-12 11 l1 -11 h1 a14 14 0 0 1 0 -28 z" fill="#2a9d8f"/>
+  <circle class="punto" cx="83" cy="20" r="3.4" fill="#fff"/>
+  <circle class="punto p2" cx="95" cy="20" r="3.4" fill="#fff"/>
+  <circle class="punto p3" cx="107" cy="20" r="3.4" fill="#fff"/>
+
+  <path class="borde" d="M160 26 h-30 a14 14 0 0 0 0 28 h20 l12 11 l-1 -11 h-1 a14 14 0 0 0 0 -28 z" fill="#f4a261"/>
+  <circle class="punto" cx="133" cy="40" r="3.4" fill="#fff"/>
+  <circle class="punto p2" cx="145" cy="40" r="3.4" fill="#fff"/>
+  <circle class="punto p3" cx="157" cy="40" r="3.4" fill="#fff"/>
+
+  <g transform="translate(0 14)">
+    <!-- ================= PERRO ================= -->
+    <!-- cola -->
+    <path d="M46 194 C26 194 20 172 30 158" fill="none" stroke="#2f3e46" stroke-width="13" stroke-linecap="round"/>
+    <path d="M46 194 C26 194 20 172 30 158" fill="none" stroke="#e39a50" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="30" cy="158" r="4" fill="#fbe7cf"/>
+    <!-- cuerpo -->
+    <path class="borde" d="M46 208 C38 172 50 140 76 138 C102 140 112 172 104 208 Z" fill="#e39a50"/>
+    <path d="M62 207 C60 182 66 160 79 158 C92 160 96 182 94 207 Z" fill="#fbe7cf"/>
+    <!-- muslo y pata trasera -->
+    <path class="borde" d="M40 206 C34 186 44 172 58 176 C68 180 66 200 60 206 Z" fill="#e39a50"/>
+    <ellipse class="borde" cx="46" cy="208" rx="14" ry="6.5" fill="#fbe7cf"/>
+    <!-- pata delantera apoyada -->
+    <ellipse class="borde" cx="76" cy="208" rx="10" ry="6.5" fill="#fbe7cf"/>
+    <path d="M73 205 v4 M79 205 v4" stroke="#2f3e46" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- oreja lejana -->
+    <path class="borde" d="M90 66 C104 58 116 70 110 86 C104 84 96 76 90 66 Z" fill="#9c5a2b"/>
+    <!-- cabeza -->
+    <ellipse class="borde" cx="78" cy="100" rx="35" ry="32" fill="#e39a50"/>
+    <!-- mancha clara de la cara -->
+    <path d="M86 70 C90 82 92 92 100 100 L80 116 C76 100 78 82 86 70 Z" fill="#fbe7cf"/>
+    <ellipse class="borde" cx="98" cy="112" rx="18" ry="13" fill="#fbe7cf"/>
+    <!-- nariz y boca -->
+    <path d="M108 101 q7 -2 8 4 q-1 6 -8 5 q-5 -3 0 -9 z" fill="#2f3e46"/>
+    <path d="M110 112 q-4 7 -12 4" fill="none" stroke="#2f3e46" stroke-width="2.2" stroke-linecap="round"/>
+    <path class="borde" d="M101 117 q1 8 7 7 q4 -2 2 -8" fill="#f28b9b" stroke-width="1.8"/>
+    <!-- ojos -->
+    <ellipse cx="80" cy="96" rx="5.5" ry="7" fill="#2f3e46"/>
+    <ellipse cx="100" cy="93" rx="4.2" ry="5.6" fill="#2f3e46"/>
+    <circle cx="82" cy="93.5" r="2" fill="#fff"/>
+    <circle cx="101.5" cy="91" r="1.5" fill="#fff"/>
+    <path d="M74 84 q6 -4 12 -1" fill="none" stroke="#9c5a2b" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- mejilla -->
+    <ellipse cx="82" cy="111" rx="6" ry="3.5" fill="#f28b9b" opacity=".45"/>
+    <!-- oreja cercana (caída) -->
+    <path class="borde" d="M58 74 C40 76 36 108 44 124 C52 134 64 126 64 112 C64 98 66 84 58 74 Z" fill="#9c5a2b"/>
+    <!-- teléfono -->
+    <g transform="translate(-4 2) rotate(-16 106 146)">
+      <rect class="borde" x="95" y="128" width="22" height="36" rx="5" fill="#264653"/>
+      <rect x="99" y="133" width="14" height="23" rx="2.5" fill="#2a9d8f"/>
+      <rect x="101" y="137" width="7" height="2.5" rx="1" fill="#e9f5f3" opacity=".8"/>
+      <rect x="101" y="142" width="10" height="2.5" rx="1" fill="#e9f5f3" opacity=".5"/>
+    </g>
+    <!-- pata que sostiene el teléfono -->
+    <path d="M88 177 Q95 173 100 164" fill="none" stroke="#2f3e46" stroke-width="15" stroke-linecap="round"/>
+    <path d="M88 177 Q95 173 100 164" fill="none" stroke="#e39a50" stroke-width="10" stroke-linecap="round"/>
+    <ellipse class="borde" cx="100" cy="162" rx="8" ry="7" fill="#fbe7cf"/>
+
+    <!-- ================= GATA ================= -->
+    <!-- cola -->
+    <path d="M190 200 C222 198 226 166 210 150" fill="none" stroke="#2f3e46" stroke-width="13" stroke-linecap="round"/>
+    <path d="M190 200 C222 198 226 166 210 150" fill="none" stroke="#8a99a6" stroke-width="8" stroke-linecap="round"/>
+    <path d="M213 170 l7 -3 M216 184 l7 1" stroke="#66737f" stroke-width="3" stroke-linecap="round"/>
+    <!-- cuerpo -->
+    <path class="borde" d="M136 208 C128 172 138 140 164 138 C190 140 200 172 194 208 Z" fill="#8a99a6"/>
+    <path d="M146 207 C144 182 148 160 161 158 C174 160 178 182 176 207 Z" fill="#f4f6f8"/>
+    <!-- muslo y pata trasera -->
+    <path class="borde" d="M200 206 C206 186 196 172 182 176 C172 180 174 200 180 206 Z" fill="#8a99a6"/>
+    <path d="M190 182 q5 2 7 7" fill="none" stroke="#66737f" stroke-width="2.6" stroke-linecap="round"/>
+    <ellipse class="borde" cx="194" cy="208" rx="13" ry="6" fill="#f4f6f8"/>
+    <!-- pata delantera apoyada -->
+    <ellipse class="borde" cx="162" cy="208" rx="9.5" ry="6" fill="#f4f6f8"/>
+    <path d="M159 205 v4 M165 205 v4" stroke="#2f3e46" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- orejas -->
+    <path class="borde" d="M136 88 Q128 60 138 50 Q154 60 160 72 Z" fill="#8a99a6"/>
+    <path d="M140 80 Q136 64 141 58 Q150 64 153 72 Z" fill="#f4a6b5"/>
+    <path class="borde" d="M170 70 Q182 54 196 54 Q200 72 194 90 Z" fill="#8a99a6"/>
+    <path d="M176 70 Q184 61 192 61 Q194 72 191 81 Z" fill="#f4a6b5"/>
+    <!-- cabeza -->
+    <ellipse class="borde" cx="164" cy="102" rx="34" ry="30" fill="#8a99a6"/>
+    <path d="M160 74 v8 M168 73 v9 M176 75 v7" stroke="#66737f" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="150" cy="114" rx="17" ry="12" fill="#f4f6f8"/>
+    <!-- nariz y boca -->
+    <path d="M138 106 h8 q-1 4 -4 5 q-3 -1 -4 -5 z" fill="#f28b9b"/>
+    <path d="M142 111 v3 M142 114 q-3 4 -7 1 M142 114 q3 4 7 1" fill="none" stroke="#2f3e46" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- ojos -->
+    <ellipse cx="164" cy="98" rx="5.5" ry="7" fill="#2f3e46"/>
+    <ellipse cx="144" cy="97" rx="4.2" ry="5.6" fill="#2f3e46"/>
+    <circle cx="166" cy="95.5" r="2" fill="#fff"/>
+    <circle cx="145.5" cy="95" r="1.5" fill="#fff"/>
+    <!-- mejilla -->
+    <ellipse cx="164" cy="113" rx="6" ry="3.5" fill="#f28b9b" opacity=".45"/>
+    <!-- bigotes -->
+    <path d="M134 112 l-9 -2 M134 116 l-9 1 M168 117 l14 -2 M168 121 l13 2" stroke="#2f3e46" stroke-width="1.3" stroke-linecap="round"/>
+    <!-- teléfono -->
+    <g transform="translate(4 2) rotate(16 134 146)">
+      <rect class="borde" x="123" y="128" width="22" height="36" rx="5" fill="#264653"/>
+      <rect x="127" y="133" width="14" height="23" rx="2.5" fill="#f4a261"/>
+      <rect x="129" y="137" width="7" height="2.5" rx="1" fill="#fff" opacity=".8"/>
+      <rect x="129" y="142" width="10" height="2.5" rx="1" fill="#fff" opacity=".5"/>
+    </g>
+    <!-- pata que sostiene el teléfono -->
+    <path d="M152 177 Q145 173 140 164" fill="none" stroke="#2f3e46" stroke-width="15" stroke-linecap="round"/>
+    <path d="M152 177 Q145 173 140 164" fill="none" stroke="#8a99a6" stroke-width="10" stroke-linecap="round"/>
+    <ellipse class="borde" cx="140" cy="162" rx="7.5" ry="6.5" fill="#f4f6f8"/>
+  </g>
+</svg>

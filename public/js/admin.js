@@ -6,6 +6,7 @@ const galeriaActual = document.getElementById("galeriaActual");
 const erroresAdmin = document.getElementById("erroresAdmin");
 const exitoAdmin = document.getElementById("exitoAdmin");
 const tituloForm = document.getElementById("tituloForm");
+const vistaPrevia = document.getElementById("vistaPrevia");
 
 const MAX_VIDEO_MB = 3;
 let editandoId = null;
@@ -39,6 +40,16 @@ function mostrarGaleria() {
       <button type="button" data-quitar="${i}" aria-label="Quitar archivo">✕</button>
     </div>
   `).join("");
+  actualizarVista();
+}
+
+// Muestra cómo se verá la primera foto recortada en la tarjeta
+function actualizarVista() {
+  const nueva = [...formMascota.elements.archivos.files].find(a => a.type.startsWith("image/"));
+  const guardada = galeria.find(g => g.tipo === "imagen");
+  const src = guardada ? guardada.src : nueva ? URL.createObjectURL(nueva) : "";
+  const posicion = ENCUADRES[formMascota.elements.encuadre.value];
+  vistaPrevia.innerHTML = src ? `🐾<img src="${src}" alt="" style="object-position: ${posicion}">` : "🐾";
 }
 
 function limpiarFormulario() {
@@ -60,6 +71,7 @@ function editar(id) {
   campos.edad.value = m.edad;
   campos.caracteristicas.value = m.caracteristicas;
   campos.historia.value = m.historia || "";
+  campos.encuadre.value = m.encuadre || "centro";
   tituloForm.textContent = `Editando a ${m.nombre}`;
   exitoAdmin.hidden = true;
   mostrarGaleria();
@@ -121,6 +133,7 @@ formMascota.addEventListener("submit", async e => {
     edad: campos.edad.value.trim(),
     caracteristicas: campos.caracteristicas.value.trim(),
     historia: campos.historia.value.trim(),
+    encuadre: campos.encuadre.value,
     galeria
   };
 
@@ -158,6 +171,9 @@ galeriaActual.addEventListener("click", e => {
   galeria.splice(Number(e.target.dataset.quitar), 1);
   mostrarGaleria();
 });
+
+formMascota.elements.archivos.addEventListener("change", actualizarVista);
+formMascota.elements.encuadre.addEventListener("change", actualizarVista);
 
 document.getElementById("btnCancelar").addEventListener("click", limpiarFormulario);
 

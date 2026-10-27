@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería | PetConnect</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../img/logo.ico" sizes="any">
+</head>
+<body>
+  <header class="header">
+    <div class="contenedor header__fila">
+      <a href="index.html" class="logo"><img src="../img/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
+      <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav class="nav" id="nav">
+        <a href="index.html">Inicio</a>
+        <a href="mascotas.html">Mascotas</a>
+        <a href="galeria.html" class="activo" aria-current="page">Galería</a>
+        <a href="proceso.html">Proceso de adopción</a>
+        <a href="preguntas.html">Preguntas frecuentes</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section>
+      <h1 class="titulo">Galería de fotos</h1>
+      <p>Las que aún esperan una familia y las que ya encontraron su hogar gracias a ustedes.</p>
+
+      <div class="galeria-filtros" role="group" aria-label="Filtrar fotos">
+        <button class="btn" data-filtro="todas">Todas</button>
+        <button class="btn btn--borde" data-filtro="adopcion">En adopción</button>
+        <button class="btn btn--borde" data-filtro="adoptados">Adoptados</button>
+      </div>
+      <p id="totalFotos" class="resultado"></p>
+      <div id="fotos" class="galeria-fotos"></div>
+    </section>
+  </main>
+
+  <dialog id="visor" class="visor">
+    <button class="modal__cerrar" id="cerrarVisor" aria-label="Cerrar">✕</button>
+    <button class="carrusel__flecha carrusel__flecha--anterior" id="visorAnterior" aria-label="Foto anterior">‹</button>
+    <img id="visorImagen" alt="">
+    <button class="carrusel__flecha carrusel__flecha--siguiente" id="visorSiguiente" aria-label="Foto siguiente">›</button>
+    <p id="visorTexto" class="visor__texto"></p>
+  </dialog>
+
+  <footer class="footer">
+    <p>PetConnect © 2026 · Desafío Web Santo Tomás</p>
+    <p class="creditos">Fotos: <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY, CC BY-SA, CC0 y dominio público)</p>
+  </footer>
+
+  <script src="../js/datos.js"></script>
+  <script src="../js/comun.js"></script>
+  <script src="../js/galeria.js"></script>
+</body>
+</html>

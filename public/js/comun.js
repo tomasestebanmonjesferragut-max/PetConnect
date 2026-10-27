@@ -1,10 +1,16 @@
 // Código que usan todas las páginas
 let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
+// Qué parte de la foto se muestra cuando se recorta (arriba, centro o abajo)
+const ENCUADRES = { arriba: "center 15%", centro: "center", abajo: "center 85%" };
+function encuadre(m) {
+  return ENCUADRES[m.encuadre] || ENCUADRES.centro;
+}
+
 // Primera imagen de la galería; si no hay o no carga se queda la huella
 function foto(m, clase) {
   const portada = (m.galeria || []).find(g => g.tipo === "imagen");
-  const img = portada ? `<img src="${portada.src}" alt="Foto de ${m.nombre}" onerror="this.remove()">` : "";
+  const img = portada ? `<img src="${portada.src}" alt="Foto de ${m.nombre}" style="object-position: ${encuadre(m)}" onerror="this.remove()">` : "";
   return `<div class="${clase}">🐾${img}</div>`;
 }
 
@@ -40,10 +46,10 @@ function linkYoutube(url) {
 }
 
 // Dibuja un elemento de la galería: foto, video subido o video de YouTube
-function medio(item, nombre) {
+function medio(item, m) {
   if (item.tipo === "video") return `<video src="${item.src}" controls playsinline></video>`;
-  if (item.tipo === "youtube") return `<iframe src="${linkYoutube(item.src)}" title="Video de ${nombre}" allowfullscreen></iframe>`;
-  return `<img src="${item.src}" alt="Foto de ${nombre}">`;
+  if (item.tipo === "youtube") return `<iframe src="${linkYoutube(item.src)}" title="Video de ${m.nombre}" allowfullscreen></iframe>`;
+  return `<img src="${item.src}" alt="Foto de ${m.nombre}" style="object-position: ${encuadre(m)}">`;
 }
 
 // Menú móvil

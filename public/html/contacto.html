@@ -5,15 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto | PetConnect</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../img/logo.ico" sizes="any">
 </head>
 <body>
   <header class="header">
     <div class="contenedor header__fila">
-      <a href="index.html" class="logo">🐾 PetConnect</a>
+      <a href="index.html" class="logo"><img src="../img/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
       <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="nav" id="nav">
         <a href="index.html">Inicio</a>
         <a href="mascotas.html">Mascotas</a>
+        <a href="galeria.html">Galería</a>
         <a href="proceso.html">Proceso de adopción</a>
         <a href="preguntas.html">Preguntas frecuentes</a>
         <a href="contacto.html" class="activo" aria-current="page">Contacto</a>
@@ -51,8 +53,9 @@
           </label>
           <label class="check">
             <input type="checkbox" name="robot" required>
-            🤖 No soy un robot
+            Acepto cuidar responsablemente a la mascota y proporcionale un hogar seguro.
           </label>
+          
           <p id="errores" class="errores"></p>
           <button type="submit" class="btn">Enviar</button>
           <p id="exito" class="exito" hidden></p>
