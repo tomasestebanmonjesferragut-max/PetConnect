@@ -54,12 +54,12 @@ const familias = [
   { familia: "Valentina", mascota: "Pelusa", especie: "gato", texto: "Vivo sola y Pelusa me recibe cada tarde en la puerta. No me imagino la casa sin ella." }
 ];
 
-// Fotos de mascotas que ya encontraron familia (galería)
+// Fotos de mascotas que ya encontraron familia (galería, sin nombre)
 const fotosAdoptados = [
-  { src: "../img/fotos/toby.jpg", nombre: "Toby" },
-  { src: "../img/fotos/michi.jpg", nombre: "Michi" },
-  { src: "../img/fotos/nube.jpg", nombre: "Nube" },
-  { src: "../img/fotos/coco.jpg", nombre: "Coco" },
+  { src: "../img/fotos/adoptado9.jpg" },
+  { src: "../img/fotos/adoptado10.jpg" },
+  { src: "../img/fotos/adoptado11.jpg" },
+  { src: "../img/fotos/adoptado12.jpg" },
   { src: "../img/fotos/adoptado1.jpeg" },
   { src: "../img/fotos/adoptado2.jpeg" },
   { src: "../img/fotos/adoptado3.jpeg" },
