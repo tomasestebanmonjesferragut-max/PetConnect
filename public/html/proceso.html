@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proceso de adopción | PetConnect</title>
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="icon" href="../img/logo.ico" sizes="any">
+  <link rel="icon" href="../img/imagenes/logo.ico" sizes="any">
 </head>
 <body>
   <header class="header">
     <div class="contenedor header__fila">
-      <a href="index.html" class="logo"><img src="../img/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
+      <a href="index.html" class="logo"><img src="../img/imagenes/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
       <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="nav" id="nav">
         <a href="index.html">Inicio</a>
@@ -34,7 +34,8 @@
         <li><strong>Evaluamos</strong> la solicitud. La adopción nunca es automática.</li>
         <li><strong>Firma y bienvenida</strong>: compromiso de adopción responsable y seguimiento.</li>
       </ol>
-      <p id="avance" class="avance"></p>
+      <div class="progreso" aria-hidden="true"><div id="barraProgreso" class="progreso__barra"></div></div>
+      <p id="avance" class="avance" aria-live="polite"></p>
       <p class="centrado"><a href="mascotas.html" class="btn">Ver mascotas</a></p>
     </section>
   </main>
@@ -42,7 +43,7 @@
   <footer class="footer">
     <div class="contenedor footer__grilla">
       <div class="footer__marca">
-        <img src="../img/logo.svg" alt="" class="footer__logo">
+        <img src="../img/imagenes/logo.svg" alt="" class="footer__logo">
         <div>
           <p class="footer__nombre">Pet<b>Connect</b></p>
           <p>Conectamos animales rescatados con familias que quieren adoptar de forma responsable.</p>

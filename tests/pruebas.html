@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pruebas | PetConnect</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 20px 16px; background: #f7f9f9; color: #264653; }
+    h1 { margin: 0 0 8px; }
+    p { margin: 0 0 12px; }
+    button { background: #2a9d8f; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; font-size: 1rem; cursor: pointer; }
+    button:disabled { opacity: .5; cursor: wait; }
+    #resumen { font-weight: bold; margin: 14px 0; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e3ecea; vertical-align: top; font-size: .9rem; }
+    th { background: #264653; color: #fff; }
+    .grupo td { background: #e9f5f3; font-weight: bold; }
+    .ok { color: #1f7a6f; }
+    .falla { color: #c62d39; }
+    small { display: block; color: #667; }
+    @media (max-width: 600px) { th:first-child, td:first-child { width: 45%; } }
+  </style>
+</head>
+<body>
+  <h1>Pruebas de PetConnect</h1>
+  <p>Abre cada página en un marco de 1280 px (PC) y de 375 px (móvil) y la usa como lo haría una persona. Tus datos guardados se respaldan antes y se restauran al terminar.</p>
+  <button id="ejecutar">Ejecutar pruebas</button>
+  <p id="resumen"></p>
+  <table>
+    <thead><tr><th>Punto de validación</th><th>PC (1280 px)</th><th>Móvil (375 px)</th></tr></thead>
+    <tbody id="resultados"></tbody>
+  </table>
+  <script src="pruebas.js"></script>
+</body>
+</html>

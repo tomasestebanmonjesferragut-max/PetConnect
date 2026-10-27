@@ -4,6 +4,8 @@ const totalFotos = document.getElementById("totalFotos");
 const visor = document.getElementById("visor");
 const visorImagen = document.getElementById("visorImagen");
 const visorTexto = document.getElementById("visorTexto");
+const buscarFoto = document.getElementById("buscarFoto");
+const botonesFiltro = document.querySelectorAll("[data-filtro]");
 
 // Junta todas las fotos en una sola lista con su estado
 const todasLasFotos = [
@@ -15,15 +17,24 @@ const todasLasFotos = [
 
 let visibles = todasLasFotos;
 let fotoActual = 0;
+let filtroActual = "todas";
 
 function textoFoto(f) {
   if (f.estado === "adopcion") return `${escaparHTML(f.nombre)} · busca hogar`;
   return f.nombre ? `${escaparHTML(f.nombre)} · ya tiene familia` : "Ya tiene familia";
 }
 
-function mostrarFotos(filtro) {
-  visibles = filtro === "todas" ? todasLasFotos : todasLasFotos.filter(f => f.estado === filtro);
-  totalFotos.textContent = `${visibles.length} foto(s)`;
+// Filtra por estado (botones) y por nombre (buscador) a la vez
+function mostrarFotos(filtro = filtroActual) {
+  filtroActual = filtro;
+  const texto = buscarFoto.value.trim().toLowerCase();
+  visibles = todasLasFotos.filter(f =>
+    (filtro === "todas" || f.estado === filtro) &&
+    (texto === "" || (f.nombre || "").toLowerCase().includes(texto))
+  );
+  botonesFiltro.forEach(b => b.classList.toggle("btn--borde", b.dataset.filtro !== filtro));
+  guardarJSON("filtroGaleria", filtro);
+  totalFotos.textContent = visibles.length ? `${visibles.length} foto(s)` : "No hay fotos con ese nombre.";
   contenedorFotos.innerHTML = visibles.map((f, i) => `
     <figure class="foto-galeria">
       <button data-foto="${i}" aria-label="Ampliar foto: ${textoFoto(f)}">
@@ -49,9 +60,12 @@ function abrirVisor(i) {
 // Eventos
 document.querySelector(".galeria-filtros").addEventListener("click", e => {
   const filtro = e.target.dataset.filtro;
-  if (!filtro) return;
-  document.querySelectorAll("[data-filtro]").forEach(b => b.classList.toggle("btn--borde", b !== e.target));
-  mostrarFotos(filtro);
+  if (filtro) mostrarFotos(filtro);
+});
+
+buscarFoto.addEventListener("input", () => mostrarFotos());
+buscarFoto.addEventListener("keydown", e => {
+  if (e.key === "Escape") { buscarFoto.value = ""; mostrarFotos(); }
 });
 
 contenedorFotos.addEventListener("click", e => {
@@ -67,4 +81,6 @@ visor.addEventListener("keydown", e => {
   if (e.key === "ArrowRight") abrirVisor(fotoActual + 1);
 });
 
-mostrarFotos("todas");
+// Se recuerda el último filtro elegido
+const filtroGuardado = leerJSON("filtroGaleria", "todas");
+mostrarFotos(["todas", "adopcion", "adoptados"].includes(filtroGuardado) ? filtroGuardado : "todas");

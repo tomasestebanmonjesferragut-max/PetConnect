@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Preguntas frecuentes | PetConnect</title>
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="icon" href="../img/logo.ico" sizes="any">
+  <link rel="icon" href="../img/imagenes/logo.ico" sizes="any">
 </head>
 <body>
   <header class="header">
     <div class="contenedor header__fila">
-      <a href="index.html" class="logo"><img src="../img/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
+      <a href="index.html" class="logo"><img src="../img/imagenes/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
       <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="nav" id="nav">
         <a href="index.html">Inicio</a>
@@ -26,6 +26,8 @@
   <main class="contenedor">
     <section class="faq">
       <h1 class="titulo">Preguntas frecuentes</h1>
+      <input type="search" id="buscarPregunta" class="buscador" placeholder="Busca tu duda (ej: costo, requisitos)..." aria-label="Buscar pregunta">
+      <p id="sinPreguntas" class="resultado" hidden>No encontramos esa pregunta. <a href="contacto.html">Escríbenos</a> y te respondemos.</p>
       <details>
         <summary>¿La adopción tiene costo?</summary>
         <p>No. Solo pedimos el compromiso de cuidar a la mascota, mantener sus vacunas al día y esterilizarla cuando corresponda.</p>
@@ -53,7 +55,7 @@
   <footer class="footer">
     <div class="contenedor footer__grilla">
       <div class="footer__marca">
-        <img src="../img/logo.svg" alt="" class="footer__logo">
+        <img src="../img/imagenes/logo.svg" alt="" class="footer__logo">
         <div>
           <p class="footer__nombre">Pet<b>Connect</b></p>
           <p>Conectamos animales rescatados con familias que quieren adoptar de forma responsable.</p>

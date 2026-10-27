@@ -9,6 +9,8 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+/* hidden siempre oculta, aunque la clase defina display */
+[hidden] { display: none !important; }
 
 body {
   font-family: system-ui, Arial, sans-serif;
@@ -296,7 +298,7 @@ main { min-height: 60vh; }
 .inicio .nav a.activo { background: var(--primario); color: var(--blanco); border-bottom: none; }
 .inicio .menu { background: var(--blanco); width: 44px; height: 44px; border-radius: 50%; box-shadow: 0 2px 10px rgba(0,0,0,.2); }
 
-.hero--foto { position: relative; text-align: left; padding: 0; min-height: clamp(480px, 42.4vw, 700px); display: flex; align-items: center; background: #7a3b22 url(../img/portada.webp) center / cover no-repeat; }
+.hero--foto { position: relative; text-align: left; padding: 0; min-height: clamp(480px, 42.4vw, 700px); display: flex; align-items: center; background: #7a3b22 url(../img/imagenes/portada.webp) center / cover no-repeat; }
 .hero--foto::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to left, rgba(38,70,83,.88) 0%, rgba(38,70,83,.6) 28%, rgba(38,70,83,0) 50%), linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,0) 25%); }
 .hero--foto .contenedor { position: relative; display: flex; justify-content: flex-end; }
 .hero__contenido { max-width: 380px; padding-top: 70px; text-shadow: 0 2px 10px rgba(0,0,0,.35); }
@@ -406,3 +408,28 @@ img, video, iframe { max-width: 100%; }
   .footer__grilla { grid-template-columns: 1fr; }
   .footer__logo { width: 64px; }
 }
+
+/* Actualización en vivo: formulario de contacto */
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.form .valido { border-color: var(--primario); }
+.campo__error { color: #c62d39; font-size: .8rem; min-height: 1em; }
+.campo__error:empty { display: none; }
+.form .check { flex-wrap: wrap; }
+.form .check .campo__error { flex-basis: 100%; }
+.campo__contador { font-size: .8rem; color: #667; text-align: right; }
+.campo__contador.listo { color: var(--primario-oscuro); }
+.vista-mascota { display: flex; gap: 12px; align-items: center; background: #e9f5f3; border-radius: 10px; padding: 8px; font-size: .9rem; }
+.vista-mascota:empty { display: none; }
+.vista-mascota strong { display: block; font-size: 1rem; }
+.vista-mascota__foto { position: relative; flex: 0 0 64px; height: 64px; border-radius: 8px; overflow: hidden; display: grid; place-items: center; background: var(--blanco); }
+.vista-mascota__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Actualización en vivo: buscadores y progreso */
+.buscador { width: 100%; max-width: 480px; padding: 10px 14px; border: 1px solid #ccd; border-radius: var(--radio); font-size: 1rem; margin: 8px 0 12px; }
+.buscador:focus { outline: 2px solid var(--primario); outline-offset: 1px; }
+.progreso { height: 10px; background: #dfe9e7; border-radius: 10px; overflow: hidden; margin-top: 16px; }
+.progreso__barra { height: 100%; width: 0; background: var(--primario); border-radius: 10px; transition: width .4s ease; }
+/* El footer se encoge en pantallas muy angostas */
+.footer__grilla > *, .footer__marca > div { min-width: 0; }
+.red { overflow-wrap: anywhere; }
+.filtros select, .filtros input { min-width: 0; }

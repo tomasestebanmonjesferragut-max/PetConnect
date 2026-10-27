@@ -10,6 +10,8 @@ const resultado = document.getElementById("resultado");
 const modal = document.getElementById("modal");
 const modalContenido = document.getElementById("modalContenido");
 const contadorFav = document.getElementById("contadorFav");
+const btnFavoritos = document.getElementById("btnFavoritos");
+const btnLimpiar = document.getElementById("btnLimpiar");
 
 function rangoEdad(edadString) {
   const meses = obtenerMeses(edadString);
@@ -33,6 +35,38 @@ function mostrarMascotas() {
     : `${filtradas.length} mascota(s) encontrada(s)`;
 
   listado.innerHTML = filtradas.map(tarjeta).join("");
+  guardarFiltros();
+}
+
+// Los filtros se guardan para que sigan puestos al volver a la página
+function guardarFiltros() {
+  guardarJSON("filtrosMascotas", {
+    texto: buscar.value,
+    especie: filtroEspecie.value,
+    edad: filtroEdad.value,
+    soloFavoritos
+  });
+  btnLimpiar.hidden = !(buscar.value || filtroEspecie.value || filtroEdad.value || soloFavoritos);
+}
+
+function restaurarFiltros() {
+  const guardados = leerJSON("filtrosMascotas", null);
+  if (!guardados || typeof guardados !== "object") return;
+  const existe = (select, valor) => [...select.options].some(o => o.value === valor);
+  if (typeof guardados.texto === "string") buscar.value = guardados.texto;
+  if (existe(filtroEspecie, guardados.especie)) filtroEspecie.value = guardados.especie;
+  if (existe(filtroEdad, guardados.edad)) filtroEdad.value = guardados.edad;
+  soloFavoritos = guardados.soloFavoritos === true;
+  btnFavoritos.classList.toggle("btn--borde", !soloFavoritos);
+}
+
+function limpiarFiltros() {
+  buscar.value = "";
+  filtroEspecie.value = "";
+  filtroEdad.value = "";
+  soloFavoritos = false;
+  btnFavoritos.classList.add("btn--borde");
+  mostrarMascotas();
 }
 
 function cambiarFavorito(id) {
@@ -41,9 +75,18 @@ function cambiarFavorito(id) {
   } else {
     favoritos.push(id);
   }
-  localStorage.setItem("favoritos", JSON.stringify(favoritos));
+  guardarJSON("favoritos", favoritos);
+  refrescar();
+}
+
+// Redibuja contador, tarjetas y el botón de la ficha abierta (también lo usa comun.js)
+function refrescar() {
   contadorFav.textContent = favoritos.length;
   mostrarMascotas();
+  const botonFicha = modalContenido.querySelector("[data-favficha]");
+  if (botonFicha) {
+    botonFicha.textContent = favoritos.includes(Number(botonFicha.dataset.favficha)) ? "❤️ Marcada" : "🤍 Marcar";
+  }
 }
 
 function abrirFicha(id) {
@@ -89,6 +132,10 @@ function verMedio(i) {
 
 // Eventos
 buscar.addEventListener("input", mostrarMascotas);
+buscar.addEventListener("keydown", e => {
+  if (e.key === "Escape") { buscar.value = ""; mostrarMascotas(); }
+});
+btnLimpiar.addEventListener("click", limpiarFiltros);
 filtroEspecie.addEventListener("change", mostrarMascotas);
 filtroEdad.addEventListener("change", mostrarMascotas);
 
@@ -102,16 +149,12 @@ listado.addEventListener("click", e => {
 modalContenido.addEventListener("click", e => {
   const miniatura = e.target.closest(".miniatura");
   if (miniatura) verMedio(Number(miniatura.dataset.medio));
-  if (e.target.dataset.favficha) {
-    const id = Number(e.target.dataset.favficha);
-    cambiarFavorito(id);
-    e.target.textContent = favoritos.includes(id) ? "❤️ Marcada" : "🤍 Marcar";
-  }
+  if (e.target.dataset.favficha) cambiarFavorito(Number(e.target.dataset.favficha));
 });
 
-document.getElementById("btnFavoritos").addEventListener("click", e => {
+btnFavoritos.addEventListener("click", () => {
   soloFavoritos = !soloFavoritos;
-  e.currentTarget.classList.toggle("btn--borde", !soloFavoritos);
+  btnFavoritos.classList.toggle("btn--borde", !soloFavoritos);
   mostrarMascotas();
 });
 
@@ -120,6 +163,7 @@ document.getElementById("cerrarModal").addEventListener("click", () => modal.clo
 modal.addEventListener("close", () => { modalContenido.innerHTML = ""; });
 
 // Si se llega desde el inicio (mascotas.html?ver=3) se abre esa ficha
+restaurarFiltros();
 contadorFav.textContent = favoritos.length;
 mostrarMascotas();
 const verId = Number(new URLSearchParams(location.search).get("ver"));

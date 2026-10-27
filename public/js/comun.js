@@ -61,3 +61,12 @@ btnMenu.addEventListener("click", () => {
   const abierto = nav.classList.toggle("nav--abierto");
   btnMenu.setAttribute("aria-expanded", abierto);
 });
+
+// Si otra pestaña cambia los favoritos, esta se actualiza sin recargar.
+// Cada página puede definir refrescar() para redibujar lo que necesite.
+window.addEventListener("storage", e => {
+  if (e.key !== "favoritos") return;
+  const nuevos = leerJSON("favoritos", []);
+  favoritos = Array.isArray(nuevos) ? nuevos.filter(Number.isFinite) : [];
+  if (typeof refrescar === "function") refrescar();
+});

@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mascotas | PetConnect</title>
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="icon" href="../img/logo.ico" sizes="any">
+  <link rel="icon" href="../img/imagenes/logo.ico" sizes="any">
 </head>
 <body>
   <header class="header">
     <div class="contenedor header__fila">
-      <a href="index.html" class="logo"><img src="../img/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
+      <a href="index.html" class="logo"><img src="../img/imagenes/logo.svg" alt="" class="logo__img"><span>Pet<b>Connect</b></span></a>
       <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="nav" id="nav">
         <a href="index.html">Inicio</a>
@@ -41,6 +41,7 @@
           <option value="adulto">Adultos (4 años o más)</option>
         </select>
         <button id="btnFavoritos" class="btn btn--borde">❤ Me interesan (<span id="contadorFav">0</span>)</button>
+        <button id="btnLimpiar" class="btn btn--borde" hidden>✕ Limpiar filtros</button>
       </div>
 
       <p id="resultado" class="resultado"></p>
@@ -56,7 +57,7 @@
   <footer class="footer">
     <div class="contenedor footer__grilla">
       <div class="footer__marca">
-        <img src="../img/logo.svg" alt="" class="footer__logo">
+        <img src="../img/imagenes/logo.svg" alt="" class="footer__logo">
         <div>
           <p class="footer__nombre">Pet<b>Connect</b></p>
           <p>Conectamos animales rescatados con familias que quieren adoptar de forma responsable.</p>

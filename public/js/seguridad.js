@@ -22,6 +22,24 @@ function leerJSON(clave, porDefecto) {
   }
 }
 
+// Guarda en localStorage sin romper la página si está lleno o bloqueado
+function guardarJSON(clave, valor) {
+  try {
+    localStorage.setItem(clave, JSON.stringify(valor));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function borrarJSON(clave) {
+  try {
+    localStorage.removeItem(clave);
+  } catch {
+    // Si el navegador bloquea localStorage no hay nada que borrar
+  }
+}
+
 // Deja solo los campos y tipos que la página espera de una mascota guardada
 function limpiarMascota(m) {
   if (!m || !Number.isFinite(m.id)) return null;
