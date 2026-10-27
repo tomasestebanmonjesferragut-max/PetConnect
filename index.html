@@ -9,19 +9,22 @@
 <body>
   <header class="header">
     <div class="contenedor header__fila">
-      <a href="#" class="logo">🐾 PetConnect</a>
-      <nav class="nav">
+      <a href="#inicio" class="logo">🐾 PetConnect</a>
+      <button id="btnMenu" class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav class="nav" id="nav">
+        <a href="#inicio">Inicio</a>
         <a href="#mascotas">Mascotas</a>
-        <a href="#como-adoptar">Cómo adoptar</a>
-        <button id="btnFavoritos" class="btn btn--borde">❤ Favoritos (<span id="contadorFav">0</span>)</button>
+        <a href="#como-adoptar">Proceso de adopción</a>
+        <a href="#preguntas">Preguntas frecuentes</a>
+        <a href="#contacto">Contacto</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
+  <section id="inicio" class="hero">
     <div class="contenedor">
       <h1>Encuentra a tu nuevo mejor amigo</h1>
-      <p>Conectamos mascotas que buscan hogar con familias responsables.</p>
+      <p>Somos una agrupación de voluntariado que conecta animales rescatados con familias interesadas en una adopción responsable.</p>
       <a href="#mascotas" class="btn">Ver mascotas</a>
     </div>
   </section>
@@ -31,19 +34,19 @@
       <h2>Mascotas en adopción</h2>
 
       <div class="filtros">
-        <input type="search" id="buscar" placeholder="Buscar por nombre...">
-        <select id="filtroEspecie">
+        <input type="search" id="buscar" placeholder="Buscar por nombre..." aria-label="Buscar por nombre">
+        <select id="filtroEspecie" aria-label="Filtrar por especie">
           <option value="">Todas las especies</option>
           <option value="perro">Perros</option>
           <option value="gato">Gatos</option>
-          <option value="otro">Otros</option>
         </select>
-        <select id="filtroTamano">
-          <option value="">Todos los tamaños</option>
-          <option value="pequeño">Pequeño</option>
-          <option value="mediano">Mediano</option>
-          <option value="grande">Grande</option>
+        <select id="filtroEdad" aria-label="Filtrar por edad">
+          <option value="">Todas las edades</option>
+          <option value="cachorro">Cachorros (menos de 1 año)</option>
+          <option value="joven">Jóvenes (1 a 3 años)</option>
+          <option value="adulto">Adultos (4 años o más)</option>
         </select>
+        <button id="btnFavoritos" class="btn btn--borde">❤ Me interesan (<span id="contadorFav">0</span>)</button>
       </div>
 
       <p id="resultado" class="resultado"></p>
@@ -51,46 +54,78 @@
     </section>
 
     <section id="como-adoptar" class="pasos">
-      <h2>Cómo adoptar</h2>
+      <h2>Proceso de adopción</h2>
       <ol>
         <li><strong>Elige</strong> una mascota y revisa su ficha.</li>
-        <li><strong>Envía</strong> la solicitud de adopción.</li>
-        <li><strong>Te contactamos</strong> para una entrevista y visita.</li>
-        <li><strong>¡Llévala a casa!</strong> con el compromiso de cuidarla.</li>
+        <li><strong>Escríbenos</strong> con el formulario de contacto o por WhatsApp.</li>
+        <li><strong>Conversamos</strong>: una entrevista para conocer tu hogar y tu rutina.</li>
+        <li><strong>Evaluamos</strong> la solicitud. La adopción nunca es automática.</li>
+        <li><strong>Firma y bienvenida</strong>: compromiso de adopción responsable y seguimiento.</li>
       </ol>
+    </section>
+
+    <section id="preguntas" class="faq">
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿La adopción tiene costo?</summary>
+        <p>No. Solo pedimos el compromiso de cuidar a la mascota, mantener sus vacunas al día y esterilizarla cuando corresponda.</p>
+      </details>
+      <details>
+        <summary>¿Enviar el formulario significa que ya adopté?</summary>
+        <p>No. El formulario solo nos avisa de tu interés. Después te contactamos para una entrevista y evaluar la adopción.</p>
+      </details>
+      <details>
+        <summary>¿Qué requisitos debo cumplir?</summary>
+        <p>Ser mayor de edad, contar con un espacio adecuado para la mascota y tener el acuerdo de todas las personas del hogar.</p>
+      </details>
+      <details>
+        <summary>¿Puedo conocer a la mascota antes?</summary>
+        <p>Sí. Coordinamos una visita con el voluntario que la tiene a su cuidado.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si después no puedo cuidarla?</summary>
+        <p>Debes avisarnos. Nunca la abandones: te ayudamos a buscarle un nuevo hogar.</p>
+      </details>
+    </section>
+
+    <section id="contacto" class="contacto">
+      <h2>Contacto</h2>
+      <div class="contacto__grilla">
+        <div>
+          <p>¿Te interesa alguna mascota o tienes dudas? Escríbenos.</p>
+          <ul class="datos">
+            <li>📧 <a href="mailto:adopciones@petconnect.cl">adopciones@petconnect.cl</a></li>
+            <li>📷 Instagram: @petconnect.cl</li>
+            <li>💬 WhatsApp: +56 9 5555 3402</li>
+          </ul>
+        </div>
+
+        <form id="formContacto" class="form" novalidate>
+          <label>Nombre
+            <input type="text" name="nombre">
+          </label>
+          <label>Correo
+            <input type="email" name="correo">
+          </label>
+          <label>Mascota de interés
+            <select name="mascota" id="selectMascota">
+              <option value="">Selecciona...</option>
+            </select>
+          </label>
+          <label>Mensaje
+            <textarea name="mensaje" rows="4"></textarea>
+          </label>
+          <p id="errores" class="errores"></p>
+          <button type="submit" class="btn">Enviar</button>
+          <p id="exito" class="exito" hidden></p>
+        </form>
+      </div>
     </section>
   </main>
 
   <dialog id="modal" class="modal">
     <button class="modal__cerrar" id="cerrarModal" aria-label="Cerrar">✕</button>
     <div id="modalContenido"></div>
-
-    <form id="formAdopcion" class="form" novalidate>
-      <h3>Solicitud de adopción</h3>
-      <label>Nombre completo
-        <input type="text" name="nombre" required>
-      </label>
-      <label>Correo
-        <input type="email" name="correo" required>
-      </label>
-      <label>Teléfono
-        <input type="tel" name="telefono" placeholder="+56 9 1234 5678" required>
-      </label>
-      <label>Tipo de vivienda
-        <select name="vivienda" required>
-          <option value="">Selecciona...</option>
-          <option>Casa con patio</option>
-          <option>Casa sin patio</option>
-          <option>Departamento</option>
-        </select>
-      </label>
-      <label class="check">
-        <input type="checkbox" name="compromiso" required>
-        Me comprometo a cuidarla, vacunarla y esterilizarla.
-      </label>
-      <p id="errores" class="errores"></p>
-      <button type="submit" class="btn">Enviar solicitud</button>
-    </form>
   </dialog>
 
   <footer class="footer">
@@ -98,6 +133,7 @@
     <p class="creditos">Fotos: <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY, CC BY-SA, CC0 y dominio público)</p>
   </footer>
 
+  <script src="mascotas.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

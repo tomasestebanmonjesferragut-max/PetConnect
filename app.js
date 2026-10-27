@@ -1,21 +1,28 @@
-let mascotas = []; // Se inicializa vacío, se llenará con el JSON
+// Las mascotas vienen de mascotas.js
 let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 let soloFavoritos = false;
-let mascotaActual = null;
 
 const listado = document.getElementById("listado");
 const buscar = document.getElementById("buscar");
 const filtroEspecie = document.getElementById("filtroEspecie");
-const filtroTamano = document.getElementById("filtroTamano");
+const filtroEdad = document.getElementById("filtroEdad");
 const resultado = document.getElementById("resultado");
 const modal = document.getElementById("modal");
 const modalContenido = document.getElementById("modalContenido");
-const form = document.getElementById("formAdopcion");
+const form = document.getElementById("formContacto");
+const selectMascota = document.getElementById("selectMascota");
 const errores = document.getElementById("errores");
+const exito = document.getElementById("exito");
 
-// Si la imagen no existe se queda el emoji
+// Si la imagen no existe se queda la huella
 function foto(m, clase) {
-  return `<div class="${clase}">${m.foto}<img src="${m.imagen}" alt="${m.nombre}" onerror="this.remove()"></div>`;
+  return `<div class="${clase}">🐾<img src="${m.imagen}" alt="Foto de ${m.nombre}" onerror="this.remove()"></div>`;
+}
+
+function rangoEdad(meses) {
+  if (meses < 12) return "cachorro";
+  if (meses < 48) return "joven";
+  return "adulto";
 }
 
 function mostrarMascotas() {
@@ -24,7 +31,7 @@ function mostrarMascotas() {
   const filtradas = mascotas.filter(m =>
     m.nombre.toLowerCase().includes(texto) &&
     (filtroEspecie.value === "" || m.especie === filtroEspecie.value) &&
-    (filtroTamano.value === "" || m.tamano === filtroTamano.value) &&
+    (filtroEdad.value === "" || rangoEdad(m.edadMeses) === filtroEdad.value) &&
     (!soloFavoritos || favoritos.includes(m.id))
   );
 
@@ -37,12 +44,12 @@ function mostrarMascotas() {
       ${foto(m, "tarjeta__foto")}
       <div class="tarjeta__info">
         <h3>${m.nombre}</h3>
+        <span class="etiqueta">${m.tipo}</span>
         <span class="etiqueta">${m.edad}</span>
-        <span class="etiqueta">${m.tamano}</span>
-        <p>${m.descripcion}</p>
+        <p>${m.caracteristicas}</p>
         <div class="tarjeta__acciones">
-          <button class="btn" data-ver="${m.id}">Adoptar</button>
-          <button class="fav" data-fav="${m.id}" aria-label="Favorito">${favoritos.includes(m.id) ? "❤️" : "🤍"}</button>
+          <button class="btn" data-ver="${m.id}">Ver más</button>
+          <button class="fav" data-fav="${m.id}" aria-label="Marcar a ${m.nombre} como de interés">${favoritos.includes(m.id) ? "❤️" : "🤍"}</button>
         </div>
       </div>
     </article>
@@ -61,19 +68,22 @@ function cambiarFavorito(id) {
 }
 
 function abrirFicha(id) {
-  mascotaActual = mascotas.find(m => m.id === id);
+  const m = mascotas.find(m => m.id === id);
   modalContenido.innerHTML = `
-    ${foto(mascotaActual, "modal__foto")}
-    <h2>${mascotaActual.nombre}</h2>
-    <p>${mascotaActual.descripcion}</p>
-    <p><strong>Edad:</strong> ${mascotaActual.edad} · <strong>Tamaño:</strong> ${mascotaActual.tamano}</p>
-    <p><strong>Vacunas:</strong> ${mascotaActual.vacunada ? "Al día ✅" : "Pendientes ⏳"}</p>
+    ${foto(m, "modal__foto")}
+    <h2>${m.nombre}</h2>
+    <p><strong>Especie:</strong> ${m.tipo} · <strong>Edad:</strong> ${m.edad}</p>
+    <p><strong>Características:</strong> ${m.caracteristicas}</p>
+    <button class="btn" data-contactar="${m.id}">Me interesa adoptar</button>
   `;
-  form.reset();
-  form.hidden = false;
-  errores.textContent = "";
-  form.querySelectorAll(".invalido").forEach(c => c.classList.remove("invalido"));
   modal.showModal();
+}
+
+// Cierra la ficha y lleva al formulario con la mascota elegida
+function contactarPor(id) {
+  modal.close();
+  selectMascota.value = id;
+  document.getElementById("contacto").scrollIntoView({ behavior: "smooth" });
 }
 
 function validarFormulario() {
@@ -83,23 +93,20 @@ function validarFormulario() {
   form.querySelectorAll(".invalido").forEach(c => c.classList.remove("invalido"));
 
   if (campos.nombre.value.trim().length < 3) {
-    mensajes.push("Ingresa tu nombre completo.");
+    mensajes.push("Ingresa tu nombre.");
     campos.nombre.classList.add("invalido");
   }
   if (!/^\S+@\S+\.\S+$/.test(campos.correo.value)) {
     mensajes.push("El correo no es válido.");
     campos.correo.classList.add("invalido");
   }
-  if (!/^\+?\d{8,12}$/.test(campos.telefono.value.replace(/\s/g, ""))) {
-    mensajes.push("El teléfono debe tener entre 8 y 12 dígitos.");
-    campos.telefono.classList.add("invalido");
+  if (campos.mascota.value === "") {
+    mensajes.push("Selecciona una mascota de interés.");
+    campos.mascota.classList.add("invalido");
   }
-  if (campos.vivienda.value === "") {
-    mensajes.push("Selecciona tu tipo de vivienda.");
-    campos.vivienda.classList.add("invalido");
-  }
-  if (!campos.compromiso.checked) {
-    mensajes.push("Debes aceptar el compromiso de adopción.");
+  if (campos.mensaje.value.trim().length < 10) {
+    mensajes.push("Escribe un mensaje de al menos 10 caracteres.");
+    campos.mensaje.classList.add("invalido");
   }
 
   errores.innerHTML = mensajes.join("<br>");
@@ -109,13 +116,17 @@ function validarFormulario() {
 // Eventos
 buscar.addEventListener("input", mostrarMascotas);
 filtroEspecie.addEventListener("change", mostrarMascotas);
-filtroTamano.addEventListener("change", mostrarMascotas);
+filtroEdad.addEventListener("change", mostrarMascotas);
 
 listado.addEventListener("click", e => {
   const ver = e.target.dataset.ver;
   const fav = e.target.dataset.fav;
   if (ver) abrirFicha(Number(ver));
   if (fav) cambiarFavorito(Number(fav));
+});
+
+modalContenido.addEventListener("click", e => {
+  if (e.target.dataset.contactar) contactarPor(e.target.dataset.contactar);
 });
 
 document.getElementById("btnFavoritos").addEventListener("click", e => {
@@ -126,21 +137,31 @@ document.getElementById("btnFavoritos").addEventListener("click", e => {
 
 document.getElementById("cerrarModal").addEventListener("click", () => modal.close());
 
+// Menú móvil
+const btnMenu = document.getElementById("btnMenu");
+const nav = document.getElementById("nav");
+btnMenu.addEventListener("click", () => {
+  const abierto = nav.classList.toggle("nav--abierto");
+  btnMenu.setAttribute("aria-expanded", abierto);
+});
+nav.addEventListener("click", e => {
+  if (e.target.tagName === "A") nav.classList.remove("nav--abierto");
+});
+
+// El formulario es simulado: no se envía a ningún servidor
 form.addEventListener("submit", e => {
   e.preventDefault();
+  exito.hidden = true;
   if (!validarFormulario()) return;
 
   const nombre = form.elements.nombre.value.trim();
-  form.hidden = true;
-  modalContenido.innerHTML += `<p class="exito">¡Gracias ${nombre}! Recibimos tu solicitud para adoptar a ${mascotaActual.nombre}. Te contactaremos pronto.</p>`;
+  const mascota = mascotas.find(m => m.id === Number(form.elements.mascota.value));
+  exito.textContent = `¡Gracias ${nombre}! Recibimos tu interés por ${mascota.nombre}. Te contactaremos para coordinar una entrevista; la adopción no queda aprobada automáticamente.`;
+  exito.hidden = false;
+  form.reset();
 });
 
-// Carga del JSON y renderizado inicial
-fetch('mascotas.json')
-  .then(respuesta => respuesta.json())
-  .then(datos => {
-    mascotas = datos; // Asigna los datos del JSON a la variable
-    document.getElementById("contadorFav").textContent = favoritos.length;
-    mostrarMascotas(); // Muestra las mascotas una vez cargadas
-  })
-  .catch(error => console.error("Error al cargar las mascotas:", error));
+// Inicio
+selectMascota.innerHTML += mascotas.map(m => `<option value="${m.id}">${m.nombre} (${m.tipo})</option>`).join("");
+document.getElementById("contadorFav").textContent = favoritos.length;
+mostrarMascotas();
