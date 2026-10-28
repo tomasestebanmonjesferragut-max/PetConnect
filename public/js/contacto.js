@@ -125,6 +125,8 @@ form.addEventListener("submit", e => {
   if (!actualizarFormulario()) return;
 
   const nombre = form.elements.nombre.value.trim();
+  const correo = form.elements.correo.value.trim();
+  const telefono = form.elements.telefono.value.trim();
   const mascota = mascotas.find(m => m.id === Number(form.elements.mascota.value));
 
   // Se oculta el formulario y queda solo el mensaje de éxito
@@ -133,9 +135,57 @@ form.addEventListener("submit", e => {
   });
   exito.textContent = `¡Gracias ${nombre}! Recibimos tu interés por ${mascota.nombre}. Te contactaremos al correo o al teléfono que dejaste para coordinar una entrevista; la adopción no queda aprobada automáticamente.`;
   exito.hidden = false;
+  mostrarConfirmacion(nombre, correo, telefono, mascota);
   form.reset();
   borrarJSON(CLAVE_BORRADOR);
 });
+
+// Muestra el correo de confirmación de la solicitud.
+// El sitio no envía correos (no hay servidor): el botón abre la app de correo
+// de la persona con la confirmación lista para enviarse una copia.
+function mostrarConfirmacion(nombre, correo, telefono, mascota) {
+  const codigo = "PC-" + Date.now().toString(36).toUpperCase().slice(-6);
+  const asunto = `Recibimos tu solicitud de adopción de ${mascota.nombre} (${codigo})`;
+  const cuerpo = [
+    `Hola ${nombre}:`,
+    "",
+    `Recibimos tu solicitud para adoptar a ${mascota.nombre} (${mascota.tipo}, ${mascota.edad}).`,
+    `Código de solicitud: ${codigo}`,
+    "",
+    "Próximos pasos:",
+    "1. Revisaremos tu solicitud.",
+    `2. Te contactaremos a este correo o al ${telefono} para coordinar una entrevista.`,
+    `3. Si todo va bien, coordinaremos una visita para que conozcas a ${mascota.nombre}.`,
+    "",
+    "Recuerda: enviar la solicitud no aprueba la adopción automáticamente.",
+    "",
+    "Equipo PetConnect",
+    "adopciones@petconnect.cl · WhatsApp +56 9 5555 3402"
+  ].join("\n");
+
+  form.querySelector(".confirmacion")?.remove();
+  const caja = document.createElement("div");
+  caja.className = "confirmacion";
+  caja.innerHTML = `
+    <p class="confirmacion__titulo">📧 Correo de confirmación</p>
+    <div class="correo">
+      <div class="correo__cabecera">
+        <p><strong>Para:</strong> <span data-campo="para"></span></p>
+        <p><strong>Asunto:</strong> <span data-campo="asunto"></span></p>
+      </div>
+      <p class="correo__cuerpo" data-campo="cuerpo"></p>
+    </div>
+    <a class="btn" data-campo="enlace">Enviarme una copia a mi correo</a>
+    <p class="confirmacion__nota">Este sitio no envía correos por su cuenta: el botón abre tu app de correo con la confirmación lista para enviártela.</p>
+  `;
+  // Los datos escritos por la persona se ponen con textContent: nunca se interpretan como HTML
+  caja.querySelector('[data-campo="para"]').textContent = correo;
+  caja.querySelector('[data-campo="asunto"]').textContent = asunto;
+  caja.querySelector('[data-campo="cuerpo"]').textContent = cuerpo;
+  caja.querySelector('[data-campo="enlace"]').href =
+    `mailto:${encodeURIComponent(correo).replace("%40", "@")}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  form.append(caja);
+}
 
 // Opciones del select con las mascotas
 selectMascota.innerHTML += mascotas.map(m => `<option value="${m.id}">${escaparHTML(m.nombre)} (${escaparHTML(m.tipo)})</option>`).join("");

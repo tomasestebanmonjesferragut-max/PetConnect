@@ -53,6 +53,8 @@ function limpiarMascota(m) {
     caracteristicas: texto(m.caracteristicas),
     historia: texto(m.historia),
     encuadre: ["arriba", "centro", "abajo"].includes(m.encuadre) || /^\d{1,3}% \d{1,3}%$/.test(m.encuadre) ? m.encuadre : "centro",
+    // El historial médico se valida al mostrarlo (perfil.js), aquí solo se exige que sea un objeto
+    salud: m.salud && typeof m.salud === "object" ? m.salud : null,
     galeria: (Array.isArray(m.galeria) ? m.galeria : []).filter(g =>
       g && ["imagen", "video", "youtube"].includes(g.tipo) &&
       typeof g.src === "string" && !/^\s*javascript:/i.test(g.src))

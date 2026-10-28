@@ -113,10 +113,12 @@ function abrirFicha(id) {
         <li><span>Edad</span>${escaparHTML(m.edad)}</li>
       </ul>
       <p class="ficha__texto"><span>Características</span>${escaparHTML(m.caracteristicas)}</p>
+      ${bloqueSalud(m)}
       <p class="ficha__nota">Enviar tu interés no aprueba la adopción: primero coordinamos una entrevista.</p>
       <div class="ficha__acciones">
         <a class="btn" href="contacto.html?mascota=${m.id}">Me interesa adoptar</a>
         <button class="btn btn--borde" data-favficha="${m.id}">${esFavorito ? "❤️ Marcada" : "🤍 Marcar"}</button>
+        <button class="btn btn--borde ficha__descargar" data-descargar="${m.id}">⬇ Descargar perfil (imagen)</button>
       </div>
     </div>
   `;
@@ -150,6 +152,15 @@ modalContenido.addEventListener("click", e => {
   const miniatura = e.target.closest(".miniatura");
   if (miniatura) verMedio(Number(miniatura.dataset.medio));
   if (e.target.dataset.favficha) cambiarFavorito(Number(e.target.dataset.favficha));
+  if (e.target.dataset.descargar) {
+    const boton = e.target;
+    boton.disabled = true;
+    boton.textContent = "Preparando…";
+    descargarPerfil(mascotaAbierta).finally(() => {
+      boton.disabled = false;
+      boton.textContent = "⬇ Descargar perfil (imagen)";
+    });
+  }
 });
 
 btnFavoritos.addEventListener("click", () => {
